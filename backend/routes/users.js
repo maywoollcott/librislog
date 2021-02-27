@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { check, validationResult } = require('express-validator/check');
+const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const config = require('config');
 const User = require('../models/User');
@@ -76,7 +76,7 @@ router.get('/', async (req, res) => {
 })
 
 // @route:  PUT /users/addbook/:id
-// @desc:   Register user
+// @desc:   Add book to user's library
 //@access:  Public
 //using express validation
 router.put('/addbook/:id', [
@@ -121,4 +121,24 @@ router.put('/addbook/:id', [
     res.status(500).send('Server error.');
   }
 });
+
+// @route:  GET users/books/:id
+// @desc:   get all books for user
+//@access:  Public
+
+router.get('/books/:id', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id)
+
+    const books = user.books;
+
+    res.status(200).json(books)
+
+  } catch(err) {
+
+    console.error(err.message);
+    res.status(500).send('Server error.');
+
+  }
+})
 module.exports = router;
