@@ -112,21 +112,20 @@ img {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
 }
 
 .landingdashboard h1 {
   color: var(--lightaqua);
   font-size: 50px;
-  margin-top: 10%;
   margin-bottom: 0;
 }
 
 .landingdashboard h2 {
   color: white;
   font-size: 20px;
-  margin-bottom: 2%;
+  margin-bottom: 0px;
 }
 
 .landingdashboard h3 {
@@ -144,6 +143,7 @@ img {
   color: var(--darkpurple);
   font-size: 15px;
   font-weight: 600;
+  margin-top: 25px;
   width: 10rem;
 }
 
@@ -169,9 +169,16 @@ img {
   width: 50%;
 }
 .formBox {
-  height: 3rem;
-  width: 50%;
-  margin-bottom: 20px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formBox h3 {
+  color: gray;
+  font-weight: 700;
+  font-size: 15px;
 }
 
 .formBox input:focus {
@@ -187,4 +194,6 @@ img {
   color: white;
   font-size: large;
   padding-left: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }

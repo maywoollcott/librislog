@@ -9,18 +9,22 @@ const Service = () => {
 
   useEffect ( () => {
 
-    const currentUserId = '6039bf7279af642bc93b4048'
+    if (value.currentUser.user !== null) {
+      const currentUserId = value.currentUser.user.id;
 
-    axios.get(`http://localhost:5000/books/${currentUserId}`)
-      .then(res => {
-        const library = res.data;
-        console.log(library);
-        value.setLibrary(library);
-      })
-      //eslint-disable-next-line react-hooks/exhaustive-deps
+      axios.get(`http://localhost:5000/books/${currentUserId}`)
+        .then(res => {
+          const library = res.data;
+          console.log(library);
+          value.setLibrary(library);
+        })
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    } else {
+      return null;
+    }
   }, [])
 
-  return null;
+    return null;
 
 }
 

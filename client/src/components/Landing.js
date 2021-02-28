@@ -3,6 +3,7 @@ import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
+
 const Landing = () => {
 
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const Landing = () => {
   const handleDataChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value }); //for some reason we're copying the formData using spread operater? then name is the name value in the input
   }
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
