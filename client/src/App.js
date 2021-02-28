@@ -1,11 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { Provider } from './Context';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Service from './components/Service'
+import Dashboard from './components/Dashboard'
+import Navbar from './components/Navbar'
+import Landing from './components/Landing'
 
 function App() {
   return (
-    <div className="App">
-      <h1>Howdy!</h1>
-    </div>
+    <Provider>
+      <Router>
+        <div className="App">
+          <Service />
+          <Navbar />
+          <Route exact path='/' component={Landing} />
+          <Switch>
+            <Route exact path='/current' component={Dashboard} />
+          </Switch>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 

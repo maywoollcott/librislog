@@ -7,11 +7,11 @@
 body {
   font-family: 'Muli', sans-serif;
   margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; 
   /* since column, align-items aligns horizontally and justify aligns vertically, for them to align vertically we must add a height */
   overflow: hidden;
+  background: rgba(60, 24, 109, 1.0);
+  background: -webkit-linear-gradient(top left, rgba(60, 24, 109, 1.0), rgba(19, 60, 138, 1.0));
+  background: -moz-linear-gradient(top left, rgba(60, 24, 109, 1.0), rgba(19, 60, 138, 1.0));
+  background: linear-gradient(to bottom right, rgba(60, 24, 109, 1.0), rgba(19, 60, 138, 1.0));
   /* this hides scroll bars by default */
 }

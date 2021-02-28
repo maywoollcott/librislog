@@ -1,10 +1,12 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const cors = require('cors');
 
 const app = express();
 
 connectDB();
 
+app.use(cors());
 app.use(express.json( {extended: false }));
 
 app.get('/', (req, res) => {
@@ -12,7 +14,7 @@ app.get('/', (req, res) => {
 });
 
 //Define Routes
-app.use('/users', require('./routes/users'));
+app.use('/', require('./routes/users'));
 
 const PORT = process.env.PORT || 5000;
 

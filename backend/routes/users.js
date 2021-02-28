@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const config = require('config');
 const User = require('../models/User');
 
-// @route:  POST /users
+// @route:  POST /
 // @desc:   Register user
 //@access:  Public
 //using express validation
@@ -65,7 +65,7 @@ router.post('/', [
 // @desc:   get all users
 //@access:  Public
 
-router.get('/', async (req, res) => {
+router.get('/users', async (req, res) => {
   try {
     const allUsers = await User.find();
     res.json(allUsers);
@@ -75,7 +75,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-// @route:  PUT /users/addbook/:id
+// @route:  PUT /addbook/:id
 // @desc:   Add book to user's library
 //@access:  Public
 //using express validation
@@ -122,7 +122,7 @@ router.put('/addbook/:id', [
   }
 });
 
-// @route:  GET users/books/:id
+// @route:  GET /books/:id
 // @desc:   get all books for user
 //@access:  Public
 
