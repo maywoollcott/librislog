@@ -7,16 +7,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  width: 100%;
 }
 
 .dashboard {
-  height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  margin: 10px;
 }
 .navbar {
   margin: 0;
@@ -196,4 +195,50 @@ img {
   padding-left: 10px;
   margin-left: 10px;
   margin-bottom: 10px;
+}
+
+.librarycontainer {
+  display:flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  overflow-x: auto;
+  list-style: none;
+  margin: 0px 50px;
+  border: 3px solid var(--lightaqua);
+  border-radius: 10px;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 40vh;
+}
+
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+.booklist {
+  height: 90%;
+  background-color: white;
+  margin: 30px;
+  width: 15rem;
+  display: flex;
+  border-radius: 10px;
+}
+
+.smallcardinfo {
+  height: auto;
+  width: 30vh;
+}
+
+h1 {
+  color: var(--lightaqua)
+}
+
+.bodydashboard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

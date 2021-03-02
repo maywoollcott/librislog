@@ -1,6 +1,8 @@
-import React, { Fragment, useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useContext, useState } from 'react';
 // import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Context } from '../Context'
 
 
 
@@ -17,11 +19,27 @@ const Landing = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value }); //for some reason we're copying the formData using spread operater? then name is the name value in the input
   }
 
+  const value = useContext(Context);
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log('Success!')
+    axios.post('http://localhost:5000/auth', {
+      username,
+      password
+    })
+    .then(res => {
+      console.log(res)
+      value.setCurrentUser({
+        token: res.data.accessToken,
+        isAuthenticated: true,
+        loading: false,
+        user: res.data.id
+      })
+      console.log(value.currentUser)
+    })
   }
+
 
   return (
     <div className="landingdashboard">

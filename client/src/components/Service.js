@@ -9,19 +9,17 @@ const Service = () => {
 
   useEffect ( () => {
 
-    if (value.currentUser.user !== null) {
-      const currentUserId = value.currentUser.user.id;
+      console.log('hello')
+      const currentUserId = value.currentUser.user;
 
-      axios.get(`http://localhost:5000/books/${currentUserId}`)
+      if(currentUserId!==null) {
+        axios.get(`http://localhost:5000/auth/${currentUserId}`)
         .then(res => {
           const library = res.data;
-          console.log(library);
           value.setLibrary(library);
         })
+      }
         //eslint-disable-next-line react-hooks/exhaustive-deps
-    } else {
-      return null;
-    }
   }, [])
 
     return null;

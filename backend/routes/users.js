@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const config = require('config');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth');
 
 // @route:  POST /
 // @desc:   Register user
@@ -42,20 +43,22 @@ router.post('/', [
 
     await user.save();
 
-    const payload = {
-      user: {
-        id: user.id
-      }
-    }
+    res.status(200).send('User added!')
 
-    jwt.sign(
-      payload, 
-      config.get('jwtSecret'),
-      { expiresIn: 360000 },
-      (err, token) => {
-        if(err) throw err;
-        res.json({ token });
-      });
+    // const payload = {
+    //   user: {
+    //     id: user.id
+    //   }
+    // }
+
+    // jwt.sign(
+    //   payload, 
+    //   config.get('jwtSecret'),
+    //   { expiresIn: 360000 },
+    //   (err, token) => {
+    //     if(err) throw err;
+    //     res.json({ token });
+    //   });
   } catch(err) {
     console.error(err.message);
     res.status(500).send('Server error.');

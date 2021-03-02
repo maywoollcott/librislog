@@ -5,6 +5,8 @@ import BookCard from './BookCard'
 const Dashboard = () => {
 
   const value = useContext(Context);
+
+  
   const currentlyReading = value.library.filter(book => book.currentlyReading === true);
 
   const [active, setActive] = useState('');
@@ -16,11 +18,13 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
+      {console.log(value.library)}
       <div className="container">
           {currentlyReading.map((book, index) => {
             return <BookCard key={index} title={book.title} author={book.author} index={index} yearPublished={book.yearPublished} active={index === active ? true : false} updateActive={updateActive}/>
           })}
       </div>
+
     </div>
   )
 }
