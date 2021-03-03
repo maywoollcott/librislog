@@ -9,25 +9,25 @@ import Library from './components/Library'
 import { useContext, useEffect }from 'react'
 import { Context } from './Context'
 import axios from 'axios';
+import apiService from './utils/apiService'
 
 function App() {
 
   const value = useContext(Context);
 
   const updateLibrary = async () => {
-    const currentUserId = value.currentUser.user;
 
-    if(currentUserId!==null) {
-      const books = await axios.get(`http://localhost:5000/auth/${currentUserId}`)
+      const accessToken = localStorage.getItem('accessToken');
+  
+      const books = await apiService.getLibrary(accessToken)
       value.setLibrary(books.data);
-      value.setLoadingLib(false);
       console.log(books)
-    }
+  
   }
 
   useEffect ( () => {
       updateLibrary()
-  }, [value.currentUser]);
+  }, [value.isAuthenticated]);
 
   return (
     <Router>

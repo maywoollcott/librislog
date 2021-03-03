@@ -1,10 +1,14 @@
 import axios from 'axios';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
+import apiService from '../utils/apiService'
 // import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Context } from '../Context'
 
 
 const Registration = () => {
+
+  const value = useContext(Context);
 
   const [formData, setFormData] = useState({
     username: '',
@@ -17,24 +21,20 @@ const Registration = () => {
   const { username, password, password2, email, readingGoal } = formData;
 
   const handleDataChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value }); //for some reason we're copying the formData using spread operater? then name is the name value in the input
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
       console.log('Passwords must match.')
     } else {
-      axios.post('http://localhost:5000/', {
-        username,
-        password,
-        password2,
-        email,
-        readingGoal
-      })
-      .then(res => {
-        console.log(res)
-      })
+      const res = await apiService.register(formData)
+        console.log(res.data)
+        const { accessToken } = res.data;
+        localStorage.setItem('accessToken', accessToken);
+        value.setIsAuthenticated(true);
+        // auth.login(() => props.history.push('/profile'));
     }
   }
 

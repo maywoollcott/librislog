@@ -3,6 +3,7 @@ import React, { useEffect, useContext, useState } from 'react';
 // import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Context } from '../Context'
+import apiService from '../utils/apiService'
 
 
 
@@ -24,20 +25,11 @@ const Landing = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/auth', {
-      username,
-      password
-    })
-    .then(res => {
-      console.log(res)
-      value.setCurrentUser({
-        token: res.data.accessToken,
-        isAuthenticated: true,
-        loading: false,
-        user: res.data.id
-      })
-      console.log(value.currentUser)
-    })
+    const res = await apiService.login(username, password);
+    console.log(res.data);
+    const { accessToken } = res.data;
+    localStorage.setItem('accessToken', accessToken);
+    value.setIsAuthenticated(true);
   }
 
 

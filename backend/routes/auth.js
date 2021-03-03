@@ -63,29 +63,10 @@ router.post('/', [
       return res.status(400).json({ errors: [{ msg: 'Invalid credentials.' }] })
     }
 
-    // const payload = {
-    //   user: {
-    //     id: user.id
-    //   }
-    // };
 
-    const token = jwt.sign({id: user.id}, 'jwtSecret', {
-      expiresIn: 86400
-    });
+    const accessToken = jwt.sign( {username: username}, config.get('jwtSecret') )
+    res.status(200).send({ accessToken: accessToken })
 
-    res.status(200).send({
-      id: user.id,
-      accessToken: token,
-      
-    })
-    // jwt.sign(
-    //   payload, 
-    //   config.get('jwtSecret'),
-    //   { expiresIn: 360000 },
-    //   (err, token) => {
-    //     if(err) throw err;
-    //     res.json({ token });
-    //   });
   } catch(err) {
     console.error(err.message);
     res.status(500).send('Server error.');

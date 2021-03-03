@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const config = require('config');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const auth = require('../middleware/auth');
+const authMiddleware = require('../middleware/auth');
 
 // @route:  POST /
 // @desc:   Register user
@@ -43,22 +43,8 @@ router.post('/', [
 
     await user.save();
 
-    res.status(200).send('User added!')
-
-    // const payload = {
-    //   user: {
-    //     id: user.id
-    //   }
-    // }
-
-    // jwt.sign(
-    //   payload, 
-    //   config.get('jwtSecret'),
-    //   { expiresIn: 360000 },
-    //   (err, token) => {
-    //     if(err) throw err;
-    //     res.json({ token });
-    //   });
+    const accessToken = jwt.sign( {username: username}, config.get('jwtSecret') )
+    res.status(200).send({ accessToken: accessToken })
   } catch(err) {
     console.error(err.message);
     res.status(500).send('Server error.');
@@ -69,7 +55,7 @@ router.post('/', [
 // @desc:   get all users
 //@access:  Public
 
-router.get('/users', async (req, res) => {
+router.get('/users', authMiddleware, async (req, res) => {
   try {
     const allUsers = await User.find();
     res.json(allUsers);
@@ -130,9 +116,10 @@ router.put('/addbook/:id', [
 // @desc:   get all books for user
 //@access:  Public
 
-router.get('/books/:id', async (req, res) => {
+router.get('/books', authMiddleware, async (req, res) => {
   try {
-    const user = await User.findById(req.params.id)
+    const { username } = req.username
+    const user = await User.findOne({ username: username })
 
     const books = user.books;
 

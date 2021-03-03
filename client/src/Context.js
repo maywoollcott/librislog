@@ -1,4 +1,5 @@
 import { useState, createContext } from 'react';
+import auth from './utils/auth'
 
 export const Context = createContext();
 
@@ -13,10 +14,9 @@ export const Provider = (props) => {
   });
 
   const [library, setLibrary] = useState([]);
-  const [loadingLib, setLoadingLib] = useState(true);
-  const [count, setCount] = useState(true);
 
-  const hello = 'howdy'
+  const initialState = auth.isAuthenticated();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 
   return (
@@ -25,11 +25,8 @@ export const Provider = (props) => {
       setCurrentUser: setCurrentUser,
       library: library,
       setLibrary: setLibrary,
-      loadingLib: loadingLib,
-      setLoadingLib: setLoadingLib,
-      hello: hello,
-      count: count,
-      setCount: setCount
+      isAuthenticated, isAuthenticated,
+      setIsAuthenticated, setIsAuthenticated
     }}>
       {props.children}
     </Context.Provider>

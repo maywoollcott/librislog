@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const checkState = () => {
     console.log(`Library is ${value.library}`)
-    console.log(value.currentUser)
+    console.log(value.isAuthenticated)
   }
   return (
     <nav className="navbar">
