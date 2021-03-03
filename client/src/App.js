@@ -17,12 +17,15 @@ function App() {
 
   const updateLibrary = async () => {
 
+    if (value.isAuthenticated) {
       const accessToken = localStorage.getItem('accessToken');
   
       const books = await apiService.getLibrary(accessToken)
       value.setLibrary(books.data);
-      console.log(books)
-  
+    } else {
+      value.setLibrary([]);
+    }
+
   }
 
   useEffect ( () => {

@@ -18,6 +18,8 @@ export const Provider = (props) => {
   const initialState = auth.isAuthenticated();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const [haveToken, setHaveToken] = useState(false);
+
 
   return (
     <Context.Provider value={{
@@ -26,7 +28,9 @@ export const Provider = (props) => {
       library: library,
       setLibrary: setLibrary,
       isAuthenticated, isAuthenticated,
-      setIsAuthenticated, setIsAuthenticated
+      setIsAuthenticated, setIsAuthenticated,
+      haveToken: haveToken,
+      setHaveToken, setHaveToken
     }}>
       {props.children}
     </Context.Provider>

@@ -17,6 +17,15 @@
   flex-wrap: wrap;
   margin: 10px;
 }
+
+.dashboardcurrent {
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
 .navbar {
   margin: 0;
   display: flex;

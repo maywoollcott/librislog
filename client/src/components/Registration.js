@@ -33,7 +33,7 @@ const Registration = () => {
         console.log(res.data)
         const { accessToken } = res.data;
         localStorage.setItem('accessToken', accessToken);
-        value.setIsAuthenticated(true);
+        localStorage.setItem('haveValidToken', true)
         // auth.login(() => props.history.push('/profile'));
     }
   }

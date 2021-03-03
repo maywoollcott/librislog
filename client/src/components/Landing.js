@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useContext, useState } from 'react';
 // import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useHistory  } from 'react-router-dom';
 import { Context } from '../Context'
 import apiService from '../utils/apiService'
+
 
 
 
@@ -21,15 +22,19 @@ const Landing = () => {
   }
 
   const value = useContext(Context);
+  const history = useHistory();
 
 
   const onSubmit = async (e) => {
     e.preventDefault();
     const res = await apiService.login(username, password);
-    console.log(res.data);
     const { accessToken } = res.data;
     localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('haveValidToken', true)
     value.setIsAuthenticated(true);
+    history.push('/current')
+    
+            // auth.login(() => props.history.push('/profile'));
   }
 
 
