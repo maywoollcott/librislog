@@ -8,7 +8,9 @@ const Library = (props) => {
 
   
   const allBooks = value.library;
-
+  const currentlyReading = value.library.filter(book => book.status === 'currentlyReading');
+  const finished = value.library.filter(book => book.status === 'finished');
+  const wantToRead = value.library.filter(book => book.status === 'wantToRead');
   
 
   return (
@@ -22,21 +24,21 @@ const Library = (props) => {
       </div>
       <h1>Currently Reading</h1>
       <div className="librarycontainer">
-          {allBooks.map((book, index) => {
+          {currentlyReading.map((book, index) => {
             console.log(book)
             return <ListCard key={index} title={book.title} author={book.author} index={index} yearPublished={book.yearPublished}/>
           })}
       </div>
       <h1>Finished</h1>
         <div className="librarycontainer">
-            {allBooks.map((book, index) => {
+            {finished.map((book, index) => {
               console.log(book)
               return <ListCard key={index} title={book.title} author={book.author} index={index} yearPublished={book.yearPublished}/>
             })}
         </div>
       <h1>To Read</h1>
         <div className="librarycontainer">
-              {allBooks.map((book, index) => {
+              {wantToRead.map((book, index) => {
                 console.log(book)
                 return <ListCard key={index} title={book.title} author={book.author} index={index} yearPublished={book.yearPublished}/>
               })}

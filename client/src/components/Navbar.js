@@ -29,13 +29,15 @@ const Navbar = () => {
     <nav className="navbar">
       <img src={logo} alt=""/>
       <ul className="navlinks">
-        <li><Link to="/current" className="textlink">Current</Link></li>
-        <li><Link to="/library" className="textlink">Library</Link></li>
-        <li><Link to="/toread" className="textlink">Discover</Link></li>
-        <li><Link to="/vocab" className="textlink">Vocab</Link></li>
-        <li><Link to="/stats" className="textlink">Stats</Link></li>
-        <button onClick={checkState}>Check State</button>
-        <button onClick={logout}>Logout</button>
+        {value.isAuthenticated && <li><Link to="/current" className="textlink">Current</Link></li>}
+        {value.isAuthenticated && <li><Link to="/library" className="textlink">Library</Link></li>}
+        {value.isAuthenticated && <li><Link to="/toread" className="textlink">Discover</Link></li>}
+        {value.isAuthenticated && <li><Link to="/vocab" className="textlink">Vocab</Link></li>}
+        {value.isAuthenticated && <li><Link to="/stats" className="textlink">Stats</Link></li>}
+        {!value.isAuthenticated && <li><Link to="/" className="textlink">Log In</Link></li>}
+        {!value.isAuthenticated && <li><Link to="/register" className="textlink">Register</Link></li>}
+        <button className="navbtn" onClick={checkState}>Check State</button>
+        {value.isAuthenticated && <button className="navbtn" onClick={logout}>Logout</button>}
       </ul>
     </nav>
   )

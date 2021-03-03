@@ -10,6 +10,7 @@ import { useContext, useEffect }from 'react'
 import { Context } from './Context'
 import axios from 'axios';
 import apiService from './utils/apiService'
+import AddBook from './components/AddBook'
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
         <Navbar />
         <div className="bodydashboard">
           <Route exact path='/' component={Landing} />
+          <Route exact path='/addbook' component={AddBook} />
           <Route exact path='/register' component={Registration} />
           <Switch>
             <Route exact path='/current' component={Dashboard} />

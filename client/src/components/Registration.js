@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, { Fragment, useState, useContext } from 'react';
 import apiService from '../utils/apiService'
 // import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Context } from '../Context'
 
 
 const Registration = () => {
 
   const value = useContext(Context);
+  const history = useHistory();
 
   const [formData, setFormData] = useState({
     username: '',
@@ -34,7 +35,8 @@ const Registration = () => {
         const { accessToken } = res.data;
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('haveValidToken', true)
-        // auth.login(() => props.history.push('/profile'));
+        value.setIsAuthenticated(true);
+        history.push('/current')
     }
   }
 

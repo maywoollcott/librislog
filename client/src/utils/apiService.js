@@ -34,6 +34,14 @@ apiService.getLibrary= (token) => {
   })
 };
 
+apiService.updateLibrary= (library, token) => {
+  return axios.put(`${BASE_URL}/updatelibrary`, library, {
+    headers: {
+      "Authorization" : `Bearer ${token}`
+    },
+  })
+};
+
 apiService.logout = () => {
 
 };

@@ -53,17 +53,8 @@ const UserSchema = new Schema({
           required: true
         },
       }],
-      currentlyReading: {
-        type: Boolean,
-        default: false
-      },
-      finished: {
-        type: Boolean,
-        default: false
-      },
-      wantToRead: {
-        type: Boolean,
-        default: false
+      status: {
+        type: String
       },
       dateStarted: {
         type: Date,

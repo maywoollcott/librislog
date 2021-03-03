@@ -48,6 +48,7 @@ li {
   display: flex;
   margin-right: 5%;
   margin-left: auto;
+  align-items: center;
 }
 
 img {
@@ -250,4 +251,76 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.navbtn {
+  background-color: var(--lightaqua);
+  border: none;
+  border-radius: 10px;
+  height: 2rem;
+  color: var(--darkpurple);
+  font-weight: 600;
+  width: 5rem;
+}
+
+.navbtn:hover {
+  background-color: rgb(165, 179, 218);
+}
+
+.navbtn:active {
+  transform: scale(0.94);
+  outline: none;
+}
+
+.navbtn:focus {
+  outline: none
+}
+
+.addbookcard {
+  background-color: white;
+  height: 80vh;
+  width: 50vw;
+  border-radius: 30px;
+  color: var(--darkpurple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.addbookform {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  height: 100%;
+}
+
+.radio {
+  margin-top: 10px;
+  display: flex;
+}
+
+.radioitem {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 15px;
+  flex: 1;
+}
+
+.radioitem h3 {
+  font-size: medium;
+  text-align: center;
+}
+
+.addbookcard .loginbtn {
+  margin: 0;
+}
+
+.addbookcard input {
+  color: var(--darkpurple)
 }

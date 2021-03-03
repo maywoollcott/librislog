@@ -2,6 +2,7 @@
 import React from 'react'
 import { useContext, useEffect }from 'react'
 import { Context } from '../Context'
+import apiService from '../utils/apiService'
 
 const BookCard = (props) => {
 
@@ -12,10 +13,14 @@ const BookCard = (props) => {
     props.updateActive(props.index)
   };
 
-  const deleteHandler = () => {
-    const newLib = ([...value.library])
-    newLib.splice(index, 1)
-    value.setLibrary(newLib)
+  const imFinishedHandler = async () => {
+    const newLib = ([...value.library]);
+    newLib[index].status = 'finished'
+    value.setLibrary(newLib);
+
+    const accessToken = localStorage.getItem('accessToken');
+    const res = await apiService.updateLibrary(newLib, accessToken)
+    console.log(res.data)
   }
 
   return (
@@ -24,7 +29,7 @@ const BookCard = (props) => {
         <h1>{props.title}</h1>
         <h2>{props.author}</h2>
         <h2>{props.yearPublished}</h2>
-        <button onClick={deleteHandler}>Delete</button>
+        <button onClick={imFinishedHandler}>I'm finished!</button>
       </div>
     </div>
   )

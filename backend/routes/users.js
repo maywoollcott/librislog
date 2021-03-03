@@ -65,46 +65,20 @@ router.get('/users', authMiddleware, async (req, res) => {
   }
 })
 
-// @route:  PUT /addbook/:id
-// @desc:   Add book to user's library
+// @route:  PUT /updatelibrary
+// @desc:   update user's library
 //@access:  Public
 //using express validation
-router.put('/addbook/:id', [
-  check('title', 'Title is required.').not().isEmpty(),
-  check('author', 'Author is required.').not().isEmpty(),
-  check('yearPublished', 'Please enter a year with four digits.').isLength(4),
-  check('pages', 'Please enter the number of pages in your edition.').not().isEmpty(),
-
-], async (req, res) => {
-  const errors = validationResult(req);
-
-  if(!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-
-  const { title, author, yearPublished, pages, currentlyReading, finished, wantToRead, dateStarted, dateFinished, rating  } = req.body;
+router.put('/updatelibrary', authMiddleware, async (req, res) => {
 
   try {
-    const user = await User.findById(req.params.id)
+    const { username } = req.username
+    const user = await User.findOne({ username: username })
+    console.log(user)
 
-    const book = {
-      title, 
-      author, 
-      yearPublished, 
-      pages,
-      ...currentlyReading && { currentlyReading: true},
-      ...finished && { finished },
-      ...wantToRead && { wantToRead },
-      ...dateStarted && { dateStarted },
-      ...dateFinished && { dateFinished },
-      ...rating && { rating }
-    };
-
-    user.books.unshift(book);
-
+    user.books = req.body
     await user.save();
-
-    res.status(200).json('Book added!')
+    res.status(200).send(user)
 
   } catch(err) {
     console.error(err.message);
@@ -112,7 +86,7 @@ router.put('/addbook/:id', [
   }
 });
 
-// @route:  GET /books/:id
+// @route:  GET /books
 // @desc:   get all books for user
 //@access:  Public
 
