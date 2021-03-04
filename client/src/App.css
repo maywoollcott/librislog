@@ -75,7 +75,8 @@ img {
   color: var(--darkpurple);
   cursor: pointer;
   flex: 1; 
-  margin: 10px;
+  width: 100px;
+  margin: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,7 +108,7 @@ img {
 }
 
 .panel.active {
-  flex: 5;
+  flex: 4;
 }
 
 .container {

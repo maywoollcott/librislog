@@ -18,7 +18,8 @@ const TestGoogle = () => {
     author: '',
     yearPublished: '',
     pages: '',
-    status: ''
+    status: '',
+    imageURL: '',
   });
 
   const [volumeFormData, setVolumeFormData] = useState({
@@ -47,35 +48,6 @@ const TestGoogle = () => {
     const res = await apiService.searchGoogleBooks(queryTitle, queryAuthor);
     setOptions(res.data.items.slice(0, 3));
     toggleDisplayQuestions('optionsdisplay');
-
-
-    // const volumeId = res.data.items[0].id
-    // console.log(volumeId)
-    // const volumeRes = await apiService.getGoogleBooksVolumeDetails(volumeId)
-
-    // console.log(volumeRes.data.volumeInfo.title)
-    // console.log(volumeRes.data.volumeInfo.authors[0])
-    // console.log(volumeRes.data.volumeInfo.publishedDate)
-    // console.log(volumeRes.data.volumeInfo.pageCount)
-
-    // const newBook = formData;
-    // let currentLibrary = [...value.library];
-    // currentLibrary.unshift(newBook);
-    // value.setLibrary(currentLibrary);
-
-    // const accessToken = localStorage.getItem('accessToken');
-    // const res = await apiService.updateLibrary(currentLibrary, accessToken)
-    // console.log(res.data)
-
-      // const res = await apiService.register(formData)
-      //   console.log(res.data)
-      //   const { accessToken } = res.data;
-      //   localStorage.setItem('accessToken', accessToken);
-      //   localStorage.setItem('haveValidToken', true)
-      //   value.setIsAuthenticated(true);
-      //   history.push('/current')
-
-      // console.log(newBook)
   }
 
   const selectBook = (index) => {
@@ -86,7 +58,8 @@ const TestGoogle = () => {
       author: bookInfo.authors[0],
       yearPublished: bookInfo.publishedDate.slice(0, 4),
       pages: bookInfo.pageCount,
-      status: ''
+      status: '',
+      imageURL: bookInfo.imageLinks.thumbnail
     }
     setFinalBook(finalBookDraft);
     console.log(finalBookDraft)
@@ -114,7 +87,6 @@ const TestGoogle = () => {
     console.log(res.data)
 
     history.push('/library')
-
   }
 
 

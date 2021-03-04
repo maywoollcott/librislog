@@ -47,15 +47,18 @@ const UserSchema = new Schema({
         type: Number,
         required: true,
       },
+      status: {
+        type: String
+      },
+      imageURL: {
+        type: String
+      },
       genres: [{
         name: {
           type: String,
           required: true
         },
       }],
-      status: {
-        type: String
-      },
       dateStarted: {
         type: Date,
       },

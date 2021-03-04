@@ -22,10 +22,11 @@ const ListCard = (props) => {
   return (
     <div className="booklist">
       <div className="smallcardinfo">
-        <h1>{props.title}</h1>
-        <h2>{props.author}</h2>
-        <h2>{props.yearPublished}</h2>
-        <button onClick={deleteHandler}>Delete Book Entirely</button>
+        <h3>{props.title}</h3>
+        <img src={props.imageURL} alt=""/>
+        <h3>{props.author}</h3>
+        <h3>{props.yearPublished}</h3>
+        <button className="loginbtn" onClick={deleteHandler}>Delete Book Entirely</button>
       </div>
     </div>
   )

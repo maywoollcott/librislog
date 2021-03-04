@@ -30,9 +30,10 @@ const BookCard = (props) => {
     <div className={props.active ? "panel active" : "panel"} onClick={clickActiveHandler}>
       <div className="bookinfo">
         <h1>{props.title}</h1>
+        <img src={props.imageURL} alt=""/>
         <h2>{props.author}</h2>
         <h2>{props.yearPublished}</h2>
-        <button onClick={imFinishedHandler}>I'm finished!</button>
+        <button className="loginbtn"onClick={imFinishedHandler}>I'm finished!</button>
       </div>
     </div>
   )

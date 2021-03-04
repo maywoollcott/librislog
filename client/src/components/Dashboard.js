@@ -34,7 +34,7 @@ const Dashboard = () => {
         <h1>Currently Reading</h1>
         <div className="container">
             {currentlyReading.map((book, index) => {
-              return <BookCard key={index} title={book.title} author={book.author} index={index} yearPublished={book.yearPublished} active={index === active ? true : false} updateActive={updateActive}/>
+              return <BookCard key={index} title={book.title} author={book.author} index={index} yearPublished={book.yearPublished} imageURL={book.imageURL}active={index === active ? true : false} updateActive={updateActive}/>
             })}
         </div>
   
