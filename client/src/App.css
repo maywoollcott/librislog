@@ -324,3 +324,15 @@ h1 {
 .addbookcard input {
   color: var(--darkpurple)
 }
+
+.verticalflextext {
+  justify-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+  text-align: center;
+}
+
+.verticalflextext h3 {
+  margin: 5px
+}

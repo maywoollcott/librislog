@@ -46,4 +46,12 @@ apiService.logout = () => {
 
 };
 
+apiService.searchGoogleBooks= (title, author) => {
+  return axios.get(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${author}+intitle:${title}&key=AIzaSyDmAH6FlhUPAkiWpKOhQA-Pqaps1sucP3M`)
+};
+
+apiService.getGoogleBooksVolumeDetails= (id) => {
+  return axios.get(`https://www.googleapis.com/books/v1/volumes/${id}?key=AIzaSyDmAH6FlhUPAkiWpKOhQA-Pqaps1sucP3M`)
+};
+
 export default apiService;

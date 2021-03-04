@@ -15,6 +15,9 @@ const BookCard = (props) => {
 
   const imFinishedHandler = async () => {
     const newLib = ([...value.library]);
+    let index = newLib.findIndex(book => {
+      return book.title === props.title
+    })
     newLib[index].status = 'finished'
     value.setLibrary(newLib);
 

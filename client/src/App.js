@@ -11,6 +11,7 @@ import { Context } from './Context'
 import axios from 'axios';
 import apiService from './utils/apiService'
 import AddBook from './components/AddBook'
+import TestGoogle from './components/TestGoogle'
 
 function App() {
 
@@ -39,7 +40,8 @@ function App() {
         <Navbar />
         <div className="bodydashboard">
           <Route exact path='/' component={Landing} />
-          <Route exact path='/addbook' component={AddBook} />
+          <Route exact path='/addbookmanually' component={AddBook} />
+          <Route exact path='/addbook' component={TestGoogle} />
           <Route exact path='/register' component={Registration} />
           <Switch>
             <Route exact path='/current' component={Dashboard} />

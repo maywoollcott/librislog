@@ -33,15 +33,9 @@ const AddBook = () => {
     const res = await apiService.updateLibrary(currentLibrary, accessToken)
     console.log(res.data)
 
-      // const res = await apiService.register(formData)
-      //   console.log(res.data)
-      //   const { accessToken } = res.data;
-      //   localStorage.setItem('accessToken', accessToken);
-      //   localStorage.setItem('haveValidToken', true)
-      //   value.setIsAuthenticated(true);
-      //   history.push('/current')
+    history.push('/library')
 
-      console.log(newBook)
+    console.log(newBook)
   }
 
 
