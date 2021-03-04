@@ -331,8 +331,9 @@ h1 {
   flex-direction: column;
   font-size: small;
   text-align: center;
+  align-items: center;
 }
 
 .verticalflextext h3 {
-  margin: 5px
+  margin: 5px;
 }

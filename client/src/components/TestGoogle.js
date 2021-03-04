@@ -13,7 +13,16 @@ const TestGoogle = () => {
     author: '',
   });
 
-  const [displayQuestions, toggleDisplayQuestions] = useState(false);
+  const [finalBook, setFinalBook] = useState({
+    title: '',
+    author: '',
+    yearPublished: '',
+    pages: '',
+    status: ''
+  });
+
+  const [displayQuestions, toggleDisplayQuestions] = useState('primaryform');
+
   const [options, setOptions] = useState([]);
 
   const { title, author } = formData;
@@ -32,7 +41,7 @@ const TestGoogle = () => {
 
     const res = await apiService.searchGoogleBooks(queryTitle, queryAuthor);
     setOptions(res.data.items.slice(0, 3));
-    toggleDisplayQuestions(true);
+    toggleDisplayQuestions('optionsdisplay');
 
 
     // const volumeId = res.data.items[0].id
@@ -65,8 +74,17 @@ const TestGoogle = () => {
   }
 
   const selectBook = (index) => {
-    const volumeId = options[index].id;
-    toggleDisplayQuestions(false); 
+    const bookInfo = options[index].volumeInfo;
+    toggleDisplayQuestions('finalformdisplay');
+    const finalBookDraft = {
+      title: bookInfo.title,
+      author: bookInfo.authors[0],
+      yearPublished: bookInfo.yearPublished,
+      pages: bookInfo.pageCount,
+      status: ''
+    }
+    setFinalBook(finalBookDraft);
+    
   }
 
 
@@ -74,7 +92,7 @@ const TestGoogle = () => {
     <div className="bodydashboard">
       <h1>Add book here!</h1>
       <div className="addbookcard">
-        {!displayQuestions &&
+        {displayQuestions === 'primaryform' &&
           <form className="addbookform" onSubmit={onSubmit} >
             <div className="formBox">
               <h3>TITLE: </h3>
@@ -87,17 +105,41 @@ const TestGoogle = () => {
             <button className="loginbtn" type="submit">See Options</button>
           </form>
         }
-        {displayQuestions && 
+        {displayQuestions === 'optionsdisplay' && 
           <div className="radio">
             {options.map((edition, index) => {
               return <EditionOption title={edition.volumeInfo.title} publishedDate={edition.volumeInfo.publishedDate} pages={edition.volumeInfo.pageCount} index={index} selectBook={selectBook} />
             })}
           </div>
         }
-        {displayQuestions &&
+        {displayQuestions === 'optionsdisplay' &&
           <div className="verticalflextext">
             <h3>None of these look right?</h3>
             <h3>Click <Link to="/addbookbyisbn" className="textlink">here</Link> to search by ISBN or <Link to="/addbookmanually" className="textlink">here</Link> to enter info manually.</h3>
+          </div>
+        }
+        {displayQuestions === 'finalformdisplay' &&
+          <div className="verticalflextext">
+            <h1>{finalBook.title}</h1>
+            <h3>by</h3>
+            <h2>{finalBook.author}</h2>
+            <form className="addbookform" onSubmit={onSubmit} >
+              <div className="radio">
+                <div className="radioitem">
+                  <input type="radio" name="status" value='currentlyReading' onChange={handleDataChange} required/>
+                  <h3>CURRENTLY READING</h3>
+                </div>
+                <div className="radioitem">
+                  <input type="radio" name="status" value='wantToRead' onChange={handleDataChange} required/>
+                  <h3>WANT TO READ</h3>
+                </div>
+                <div className="radioitem">
+                  <input type="radio" name="status" value='finished' onChange={handleDataChange} required/>
+                  <h3>FINISHED</h3>
+                </div>
+              </div>
+              <button className="loginbtn" type="submit">Add Book</button>
+            </form>
           </div>
         }
       </div>
