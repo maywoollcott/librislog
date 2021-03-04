@@ -21,11 +21,16 @@ const TestGoogle = () => {
     status: ''
   });
 
+  const [volumeFormData, setVolumeFormData] = useState({
+    status: '',
+  });
+
   const [displayQuestions, toggleDisplayQuestions] = useState('primaryform');
 
   const [options, setOptions] = useState([]);
 
   const { title, author } = formData;
+  const { status } = volumeFormData
 
   const handleDataChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -79,13 +84,39 @@ const TestGoogle = () => {
     const finalBookDraft = {
       title: bookInfo.title,
       author: bookInfo.authors[0],
-      yearPublished: bookInfo.yearPublished,
+      yearPublished: bookInfo.publishedDate.slice(0, 4),
       pages: bookInfo.pageCount,
       status: ''
     }
     setFinalBook(finalBookDraft);
-    
+    console.log(finalBookDraft)
   }
+
+
+  const handleVolumeDataChange = (e) => {
+    setVolumeFormData({ ...volumeFormData, [e.target.name]: e.target.value });
+    console.log(volumeFormData)
+  }
+
+  const sendBookToDb = async (e) => {
+    e.preventDefault();
+    const newBook = {...finalBook}
+    newBook.status = volumeFormData.status;
+    setFinalBook(newBook);
+    console.log(newBook)
+
+    let currentLibrary = [...value.library];
+    currentLibrary.unshift(newBook);
+    value.setLibrary(currentLibrary);
+
+    const accessToken = localStorage.getItem('accessToken');
+    const res = await apiService.updateLibrary(currentLibrary, accessToken)
+    console.log(res.data)
+
+    history.push('/library')
+
+  }
+
 
 
   return (
@@ -123,18 +154,18 @@ const TestGoogle = () => {
             <h1>{finalBook.title}</h1>
             <h3>by</h3>
             <h2>{finalBook.author}</h2>
-            <form className="addbookform" onSubmit={onSubmit} >
+            <form className="addbookform" onSubmit={sendBookToDb} >
               <div className="radio">
                 <div className="radioitem">
-                  <input type="radio" name="status" value='currentlyReading' onChange={handleDataChange} required/>
+                  <input type="radio" name="status" value='currentlyReading' onChange={handleVolumeDataChange} required/>
                   <h3>CURRENTLY READING</h3>
                 </div>
                 <div className="radioitem">
-                  <input type="radio" name="status" value='wantToRead' onChange={handleDataChange} required/>
+                  <input type="radio" name="status" value='wantToRead' onChange={handleVolumeDataChange} required/>
                   <h3>WANT TO READ</h3>
                 </div>
                 <div className="radioitem">
-                  <input type="radio" name="status" value='finished' onChange={handleDataChange} required/>
+                  <input type="radio" name="status" value='finished' onChange={handleVolumeDataChange} required/>
                   <h3>FINISHED</h3>
                 </div>
               </div>
