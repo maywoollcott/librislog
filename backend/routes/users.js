@@ -55,7 +55,7 @@ router.post('/', [
 // @desc:   get all users
 //@access:  Public
 
-router.get('/users', authMiddleware, async (req, res) => {
+router.get('/users', async (req, res) => {
   try {
     const allUsers = await User.find();
     res.json(allUsers);

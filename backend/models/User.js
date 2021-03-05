@@ -31,6 +31,9 @@ const UserSchema = new Schema({
   },
   books: [
     {
+      id: {
+        type: String,
+      },
       title: {
         type: String,
         required: true,
@@ -41,7 +44,6 @@ const UserSchema = new Schema({
       },
       yearPublished: {
         type: Number,
-        required: true,
       },
       pages: {
         type: Number,
@@ -52,6 +54,10 @@ const UserSchema = new Schema({
       },
       imageURL: {
         type: String
+      },
+      currentPage: {
+        type: Number,
+        default: 0
       },
       genres: [{
         name: {
@@ -68,6 +74,22 @@ const UserSchema = new Schema({
       rating: {
         type: Number,
       }
+    }
+  ],
+  sessions: [
+    {
+      id: {
+        type: String,
+      },
+      startingPage: {
+        type: String,
+        required: true,
+      },
+      author: {
+        type: String,
+        required: true,
+      },
+
     }
   ]
 });

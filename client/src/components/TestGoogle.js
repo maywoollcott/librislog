@@ -2,6 +2,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { Context } from '../Context'
 import React, { Fragment, useState, useContext } from 'react';
 import apiService from '../utils/apiService';
+import { nanoid } from 'nanoid';
 
 const TestGoogle = () => {
 
@@ -14,6 +15,7 @@ const TestGoogle = () => {
   });
 
   const [finalBook, setFinalBook] = useState({
+    id: '',
     title: '',
     author: '',
     yearPublished: '',
@@ -54,6 +56,7 @@ const TestGoogle = () => {
     const bookInfo = options[index].volumeInfo;
     toggleDisplayQuestions('finalformdisplay');
     const finalBookDraft = {
+      id: nanoid(),
       title: bookInfo.title,
       author: bookInfo.authors[0],
       yearPublished: bookInfo.publishedDate.slice(0, 4),
@@ -111,7 +114,7 @@ const TestGoogle = () => {
         {displayQuestions === 'optionsdisplay' && 
           <div className="radio">
             {options.map((edition, index) => {
-              return <EditionOption title={edition.volumeInfo.title} publishedDate={edition.volumeInfo.publishedDate} pages={edition.volumeInfo.pageCount} index={index} selectBook={selectBook} />
+              return <EditionOption title={edition.volumeInfo.title} publishedDate={edition.volumeInfo.publishedDate.slice(0,4)} pages={edition.volumeInfo.pageCount} index={index} imageURL={edition.volumeInfo.imageLinks ? edition.volumeInfo.imageLinks.thumbnail : 'none'} selectBook={selectBook} />
             })}
           </div>
         }
@@ -161,9 +164,10 @@ const EditionOption = (props) => {
 
   return (
     <div className="radioitem">
-      <h3>Title: {props.title}</h3>
-      <h3>Edition Year: {props.publishedDate}</h3>
-      <h3>Pages: {props.pages}</h3>
+      <h3>{props.title}</h3>
+      <img src={props.imageURL} alt=""/>
+      <h3>{props.publishedDate} Edition</h3>
+      <h3>{props.pages} pages</h3>
       <button className="loginbtn" onClick={selectHandler}>This looks right!</button>
     </div>
   )

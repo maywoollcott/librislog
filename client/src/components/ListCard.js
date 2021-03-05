@@ -25,7 +25,6 @@ const ListCard = (props) => {
         <h3>{props.title}</h3>
         <img src={props.imageURL} alt=""/>
         <h3>{props.author}</h3>
-        <h3>{props.yearPublished}</h3>
         <button className="loginbtn" onClick={deleteHandler}>Delete Book Entirely</button>
       </div>
     </div>
