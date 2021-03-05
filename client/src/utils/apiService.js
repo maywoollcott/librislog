@@ -1,7 +1,6 @@
 import axios from 'axios'
 const BASE_URL = 'http://localhost:5000';
-
-// possible to refactor into a 'fetch factory' to reduce repetition
+const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
 
 const apiService = {};
 
@@ -13,9 +12,6 @@ apiService.register = (user) => {
     email: user.email,
     readingGoal: user.readingGoal
   })
-  // .then(response => {
-  //   response.send()
-  // })
 };
 
 
@@ -47,11 +43,11 @@ apiService.logout = () => {
 };
 
 apiService.searchGoogleBooks= (title, author) => {
-  return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}&key=AIzaSyDmAH6FlhUPAkiWpKOhQA-Pqaps1sucP3M`)
+  return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}&key=${googleApiKey}`)
 };
 
 apiService.getGoogleBooksVolumeDetails= (id) => {
-  return axios.get(`https://www.googleapis.com/books/v1/volumes/${id}?key=AIzaSyDmAH6FlhUPAkiWpKOhQA-Pqaps1sucP3M`)
+  return axios.get(`https://www.googleapis.com/books/v1/volumes/${id}?key=${googleApiKey}`)
 };
 
 export default apiService;

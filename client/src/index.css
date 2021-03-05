@@ -9,6 +9,8 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+
+
   /* since column, align-items aligns horizontally and justify aligns vertically, for them to align vertically we must add a height */
   overflow: auto;
   background: rgba(60, 24, 109, 1.0);

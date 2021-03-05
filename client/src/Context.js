@@ -15,7 +15,7 @@ export const Provider = (props) => {
 
   const [library, setLibrary] = useState([]);
 
-  const initialState = auth.isAuthenticated();
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const [haveToken, setHaveToken] = useState(false);

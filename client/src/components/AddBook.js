@@ -40,7 +40,7 @@ const AddBook = () => {
 
 
   return (
-    <div className="bodydashboard">
+    <div>
       <h1>Add book here!</h1>
       <div className="addbookcard">
         <form className="addbookform" onSubmit={onSubmit} >

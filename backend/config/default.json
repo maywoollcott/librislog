@@ -1,4 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://admin123:admin123@librislog.yvhnt.mongodb.net/LibrisLog?retryWrites=true&w=majority",
-  "jwtSecret": "mysecrettoken"
-}

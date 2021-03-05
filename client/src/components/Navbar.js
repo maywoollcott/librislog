@@ -16,8 +16,7 @@ const Navbar = () => {
   }, []);
 
   const checkState = () => {
-    console.log(`Library is ${value.library}`)
-    console.log('isAuthenticated:' + value.isAuthenticated)
+    console.log(process.env.REACT_APP_GOOGLE_API_KEY)
   };
 
   const logout = () => {
@@ -32,12 +31,12 @@ const Navbar = () => {
         {value.isAuthenticated && <li><Link to="/current" className="textlink">Current</Link></li>}
         {value.isAuthenticated && <li><Link to="/library" className="textlink">Library</Link></li>}
         {value.isAuthenticated && <li><Link to="/toread" className="textlink">Discover</Link></li>}
-        {value.isAuthenticated && <li><Link to="/vocab" className="textlink">Vocab</Link></li>}
         {value.isAuthenticated && <li><Link to="/stats" className="textlink">Stats</Link></li>}
         {value.isAuthenticated && <li><Link to="/addbook" className="textlink">Add Book</Link></li>}
         {!value.isAuthenticated && <li><Link to="/" className="textlink">Log In</Link></li>}
         {!value.isAuthenticated && <li><Link to="/register" className="textlink">Register</Link></li>}
         {value.isAuthenticated && <button className="navbtn" onClick={logout}>Logout</button>}
+        {/* {value.isAuthenticated && <button className="navbtn" onClick={checkState}>Check State</button>} */}
       </ul>
     </nav>
   )

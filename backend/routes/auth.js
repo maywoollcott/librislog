@@ -4,7 +4,8 @@ const auth = require('../middleware/auth');
 const User = require('../models/User');
 const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
-const config = require('config');
+require('dotenv').config();
+const jwtSecret = process.env.JWT_SECRET;
 const bcrypt = require('bcrypt');
 
 router.get('/:id', async (req, res) => {
@@ -64,7 +65,7 @@ router.post('/', [
     }
 
 
-    const accessToken = jwt.sign( {username: username}, config.get('jwtSecret') )
+    const accessToken = jwt.sign( {username: username}, jwtSecret )
     res.status(200).send({ accessToken: accessToken })
 
   } catch(err) {

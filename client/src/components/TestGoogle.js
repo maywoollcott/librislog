@@ -62,7 +62,8 @@ const TestGoogle = () => {
       yearPublished: bookInfo.publishedDate.slice(0, 4),
       pages: bookInfo.pageCount,
       status: '',
-      imageURL: bookInfo.imageLinks.thumbnail
+      imageURL: bookInfo.imageLinks.thumbnail,
+      currentPage: 0
     }
     setFinalBook(finalBookDraft);
     console.log(finalBookDraft)
@@ -95,9 +96,9 @@ const TestGoogle = () => {
 
 
   return (
-    <div className="bodydashboard">
-      <h1>Add book here!</h1>
+    <div>
       <div className="addbookcard">
+        <h1>Add book here!</h1>
         {displayQuestions === 'primaryform' &&
           <form className="addbookform" onSubmit={onSubmit} >
             <div className="formBox">

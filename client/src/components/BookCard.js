@@ -68,7 +68,7 @@ const BookCard = (props) => {
         <h2>{props.author}</h2>
         <h2>Currently at page {props.currentPage} with {props.pages - props.currentPage} left to go!</h2>
         {!displayPageForm &&
-          <button className="loginbtn"onClick={updateProgressHandler}>Update Progress</button>
+          <button className="loginbtn" disabled={!props.active}onClick={updateProgressHandler}>Update Progress</button>
         }
         {displayPageForm &&
           <div className="verticalflextext">
@@ -82,8 +82,11 @@ const BookCard = (props) => {
           </div>
         } 
         {!displayPageForm &&        
-        <button className="loginbtn"onClick={imFinishedHandler}>I'm finished!</button>
+        <button className="loginbtn"onClick={imFinishedHandler} disabled={!props.active}>I'm finished!</button>
         }
+      </div>
+      <div className="spineinfo">
+        <h1>{props.title}</h1>
       </div>
     </div>
   )

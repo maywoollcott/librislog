@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
-const config = require('config');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const authMiddleware = require('../middleware/auth');
+require('dotenv').config();
+const jwtSecret = process.env.JWT_SECRET;
 
 // @route:  POST /
 // @desc:   Register user
@@ -43,7 +44,7 @@ router.post('/', [
 
     await user.save();
 
-    const accessToken = jwt.sign( {username: username}, config.get('jwtSecret') )
+    const accessToken = jwt.sign( {username: username}, jwtSecret )
     res.status(200).send({ accessToken: accessToken })
   } catch(err) {
     console.error(err.message);
