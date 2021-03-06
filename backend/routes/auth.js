@@ -8,25 +8,7 @@ require('dotenv').config();
 const jwtSecret = process.env.JWT_SECRET;
 const bcrypt = require('bcrypt');
 
-router.get('/:id', async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id)
-
-    const books = user.books;
-
-    res.status(200).json(books)
-
-  } catch(err) {
-
-    console.error(err.message);
-    res.status(500).send('Server error.');
-
-  }
-})
-
-// @route:  POST api/auth
-// @desc:   Authenticate user and get token
-//@access:  Public
+// Authenticate user and get token @ base/auth
 router.post('/', [
   check('username', 'Please include a valid username.').exists(),
   check('password', 'Password is required.').exists()

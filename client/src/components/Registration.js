@@ -1,7 +1,5 @@
-import axios from 'axios';
-import React, { Fragment, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import apiService from '../utils/apiService'
-// import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Context } from '../Context'
 

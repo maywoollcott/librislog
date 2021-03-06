@@ -1,12 +1,10 @@
-import React from 'react'
-import { useContext, useEffect }from 'react'
+import { useContext }from 'react'
 import { Context } from '../Context'
 import apiService from '../utils/apiService'
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
+import { AiFillStar } from 'react-icons/ai'
 
 const ListCard = (props) => {
   const value = useContext(Context)
-  const index = props.index;
 
   let status = '';
 

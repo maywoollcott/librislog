@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState }from 'react'
+import { useContext, useState }from 'react'
 import { Context } from '../Context'
 import BookCard from './BookCard'
-import AddBook from './AddBook'
 import { useHistory } from 'react-router-dom';
 
-const Dashboard = () => {
+const CurrentlyReading = () => {
 
   const value = useContext(Context);
   const history = useHistory();
@@ -43,4 +42,4 @@ const Dashboard = () => {
   }
 }
 
-export default Dashboard
+export default CurrentlyReading

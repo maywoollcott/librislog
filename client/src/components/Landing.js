@@ -1,11 +1,7 @@
-import React, { useEffect, useContext, useState } from 'react';
-// import axios from 'axios';
-import { Link, Redirect, useHistory  } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useHistory  } from 'react-router-dom';
 import { Context } from '../Context'
 import apiService from '../utils/apiService'
-
-
-
 
 const Landing = () => {
 
@@ -23,7 +19,6 @@ const Landing = () => {
   const value = useContext(Context);
   const history = useHistory();
 
-
   const onSubmit = async (e) => {
     e.preventDefault();
     const res = await apiService.login(username, password);
@@ -32,10 +27,7 @@ const Landing = () => {
     localStorage.setItem('haveValidToken', true)
     value.setIsAuthenticated(true);
     history.push('/current')
-    
-
   }
-
 
   return (
     <div className="landingdashboard">

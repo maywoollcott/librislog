@@ -8,10 +8,7 @@ const authMiddleware = require('../middleware/auth');
 require('dotenv').config();
 const jwtSecret = process.env.JWT_SECRET;
 
-// @route:  POST /
-// @desc:   Register user
-//@access:  Public
-//using express validation
+// register user and get token @ base/
 router.post('/', [
   check('username', 'Username is required.').not().isEmpty(),
   check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 })
@@ -52,10 +49,7 @@ router.post('/', [
   }
 });
 
-// @route:  GET /users
-// @desc:   get all users
-//@access:  Public
-
+// get all users (FOR TESTING)
 router.get('/users', async (req, res) => {
   try {
     const allUsers = await User.find();
@@ -66,10 +60,7 @@ router.get('/users', async (req, res) => {
   }
 })
 
-// @route:  PUT /updatelibrary
-// @desc:   update user's library
-//@access:  Public
-//using express validation
+// update user's library @ base/updatelibrary
 router.put('/updatelibrary', authMiddleware, async (req, res) => {
 
   try {
@@ -86,10 +77,7 @@ router.put('/updatelibrary', authMiddleware, async (req, res) => {
   }
 });
 
-// @route:  GET /books
-// @desc:   get all books for user
-//@access:  Public
-
+// fetch user's library @ base/books
 router.get('/books', authMiddleware, async (req, res) => {
   try {
     const { username } = req.username

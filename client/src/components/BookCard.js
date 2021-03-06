@@ -1,13 +1,12 @@
 
 import React from 'react'
-import { useContext, useEffect, useState }from 'react'
+import { useContext, useState }from 'react'
 import { Context } from '../Context'
 import apiService from '../utils/apiService'
 
 const BookCard = (props) => {
 
   const value = useContext(Context)
-  const index = props.index
 
   const clickActiveHandler = () => {
     props.updateActive(props.index)

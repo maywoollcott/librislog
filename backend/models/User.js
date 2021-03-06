@@ -74,7 +74,7 @@ const UserSchema = new Schema({
   ],
   sessions: [
     {
-      id: {
+      bookID: {
         type: String,
       },
       startingPage: {

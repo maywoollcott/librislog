@@ -1,9 +1,9 @@
 import { useHistory } from 'react-router-dom';
 import { Context } from '../Context'
-import React, { Fragment, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import apiService from '../utils/apiService'
 
-const AddBook = () => {
+const AddBookManually = () => {
   const value = useContext(Context);
   const history = useHistory();
 
@@ -16,7 +16,7 @@ const AddBook = () => {
 
   });
 
-  const { title, author, yearPublished, pages, status } = formData;
+  const { title, author, yearPublished, pages } = formData;
 
   const handleDataChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,12 +30,9 @@ const AddBook = () => {
     value.setLibrary(currentLibrary);
 
     const accessToken = localStorage.getItem('accessToken');
-    const res = await apiService.updateLibrary(currentLibrary, accessToken)
-    console.log(res.data)
+    await apiService.updateLibrary(currentLibrary, accessToken)
 
     history.push('/library')
-
-    console.log(newBook)
   }
 
 
@@ -81,4 +78,4 @@ const AddBook = () => {
   )
 }
 
-export default AddBook
+export default AddBookManually

@@ -110,7 +110,6 @@ img {
   position:absolute;
 }
 
-
 .panel h1 {
   font-size: 25px;
 }
@@ -127,7 +126,6 @@ img {
   display: flex;
   width: 80vw;
 }
-
 
 .landingdashboard {
   height: 100%;
@@ -286,7 +284,6 @@ img {
 h1 {
   color: var(--lightaqua)
 }
-
 
 .bodydashboard {
   flex-grow: 1;

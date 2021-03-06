@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Dashboard from './components/Dashboard'
+import CurrentlyReading from './components/CurrentlyReading'
 import Navbar from './components/Navbar'
 import Landing from './components/Landing'
 import Registration from './components/Registration'
@@ -8,10 +8,8 @@ import Library from './components/Library'
 import { useContext, useEffect }from 'react'
 import { Context } from './Context'
 import apiService from './utils/apiService'
-import AddBook from './components/AddBook'
-import TestGoogle from './components/TestGoogle'
-
-
+import AddBookManually from './components/AddBookManually'
+import AddBookWithApi from './components/AddBookWithApi'
 
 function App() {
 
@@ -32,6 +30,7 @@ function App() {
 
   useEffect ( () => {
       updateLibrary()
+      //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value.isAuthenticated]);
 
   return (
@@ -40,11 +39,11 @@ function App() {
         <Navbar />
         <div className="bodydashboard">
           <Route exact path='/' component={Landing} />
-          <Route exact path='/addbookmanually' component={AddBook} />
-          <Route exact path='/addbook' component={TestGoogle} />
+          <Route exact path='/addbookmanually' component={AddBookManually} />
+          <Route exact path='/addbook' component={AddBookWithApi} />
           <Route exact path='/register' component={Registration} />
           <Switch>
-            <Route exact path='/current' component={Dashboard} />
+            <Route exact path='/current' component={CurrentlyReading} />
             <Route exact path='/library' component={Library} />
           </Switch>
         </div>

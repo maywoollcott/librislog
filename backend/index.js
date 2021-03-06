@@ -7,8 +7,6 @@ const app = express();
 
 connectDB();
 
-
-
 app.use(cors());
 app.use(express.json( {extended: false }));
 
@@ -16,7 +14,6 @@ app.get('/', (req, res) => {
   res.send('API running successfully.');
 });
 
-//Define Routes
 app.use('/', require('./routes/users'));
 app.use('/auth', require('./routes/auth'));
 

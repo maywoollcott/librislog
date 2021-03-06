@@ -1,11 +1,11 @@
 import { useHistory, Link } from 'react-router-dom';
 import { Context } from '../Context'
-import React, { Fragment, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import apiService from '../utils/apiService';
 import { nanoid } from 'nanoid';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 
-const TestGoogle = () => {
+const AddBookWithApi = () => {
 
   const value = useContext(Context);
   const history = useHistory();
@@ -37,7 +37,7 @@ const TestGoogle = () => {
   const [options, setOptions] = useState([]);
 
   const { title, author } = formData;
-  const { status, dateStarted, dateFinished } = volumeFormData
+  const { dateStarted, dateFinished } = volumeFormData
 
   const handleDataChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -114,10 +114,10 @@ const TestGoogle = () => {
 
   const updateLowerStars = (index) => {
     let starsCopy = [...stars]
-    for (var i = index; i >= 0; i--) {
+    for (let i = index; i >= 0; i--) {
       starsCopy[i] = true
     }
-    for (var i = index + 1; i <= 4; i++) {
+    for (let i = index + 1; i <= 4; i++) {
       starsCopy[i] = false
     }
     return starsCopy;
@@ -145,7 +145,7 @@ const TestGoogle = () => {
         {displayQuestions === 'optionsdisplay' && 
           <div className="radio">
             {options.map((edition, index) => {
-              return <EditionOption title={edition.volumeInfo.title} publishedDate={edition.volumeInfo.publishedDate.slice(0,4)} pages={edition.volumeInfo.pageCount} index={index} imageURL={edition.volumeInfo.imageLinks ? edition.volumeInfo.imageLinks.thumbnail : 'none'} selectBook={selectBook} />
+              return <EditionOption title={edition.volumeInfo.title} publishedDate={edition.volumeInfo.publishedDate.slice(0,4)} pages={edition.volumeInfo.pageCount} index={index} imageURL={edition.volumeInfo.imageLinks ? edition.volumeInfo.imageLinks.thumbnail : 'none'} selectBook={selectBook} key={index} />
             })}
           </div>
         }
@@ -195,7 +195,7 @@ const TestGoogle = () => {
                 <div className="starscontainer">
                   <h3>RATING:</h3>
                   {stars.map((star, index) => {
-                    return star ? <AiFillStar onClick={() => changeRating(index)}/> : <AiOutlineStar onClick={() => changeRating(index)}/>
+                    return star ? <AiFillStar onClick={() => changeRating(index)}/> : <AiOutlineStar onClick={() => changeRating(index)} key={index}/>
                   })}
                 </div>
               }
@@ -229,4 +229,4 @@ const EditionOption = (props) => {
 }
 
 
-export default TestGoogle
+export default AddBookWithApi
