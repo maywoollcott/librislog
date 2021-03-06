@@ -31,7 +31,6 @@ const Registration = () => {
       console.log('Passwords must match.')
     } else {
       const res = await apiService.register(formData)
-        console.log(res.data)
         const { accessToken } = res.data;
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('haveValidToken', true)

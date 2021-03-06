@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useContext, useState } from 'react';
 // import axios from 'axios';
 import { Link, Redirect, useHistory  } from 'react-router-dom';
@@ -18,7 +17,7 @@ const Landing = () => {
   const { username, password } = formData;
 
   const handleDataChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value }); //for some reason we're copying the formData using spread operater? then name is the name value in the input
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
   const value = useContext(Context);
@@ -34,7 +33,7 @@ const Landing = () => {
     value.setIsAuthenticated(true);
     history.push('/current')
     
-            // auth.login(() => props.history.push('/profile'));
+
   }
 
 

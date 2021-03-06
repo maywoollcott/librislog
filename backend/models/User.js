@@ -21,10 +21,6 @@ const UserSchema = new Schema({
     type: Number,
     default: 0
   },
-  lastSevenDays: {
-    type: Number,
-    default: 0
-  },
   dateJoined: {
     type: Date,
     default: Date.now
@@ -66,10 +62,10 @@ const UserSchema = new Schema({
         },
       }],
       dateStarted: {
-        type: Date,
+        type: String,
       },
       dateFinished: {
-        type: Date,
+        type: String,
       },
       rating: {
         type: Number,
@@ -82,14 +78,20 @@ const UserSchema = new Schema({
         type: String,
       },
       startingPage: {
-        type: String,
-        required: true,
+        type: Number,
       },
-      author: {
-        type: String,
-        required: true,
+      endingPage: {
+        type: Number,
       },
-
+      pagesRead: {
+        type: Number
+      },
+      minutes: {
+        type: Number
+      },
+      date: {
+        type: String
+      }
     }
   ]
 });

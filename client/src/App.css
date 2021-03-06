@@ -82,7 +82,7 @@ img {
   flex-direction: column;
   transition: flex 0.7s ease-in;
   position: relative;
-  box-shadow: rgba(0, 0, 0, 0.37) 1.95px 1.95px 2.6px;
+  box-shadow: rgba(0, 0, 0, 0.158) 1.95px 1.95px 2.6px;
 }
 
 .bookinfo {
@@ -230,10 +230,13 @@ img {
   margin: 0px 50px;
   border: 3px solid var(--lightaqua);
   border-radius: 10px;
-  padding-top: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
-  height: 40vh;
+  height: 50vh;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0;
+  margin-bottom: 15px;
+  margin-top: 15px
 }
 
 ::-webkit-scrollbar {
@@ -242,31 +245,62 @@ img {
 }
 
 .booklist {
-  height: 90%;
+  height: 100%;
   background-color: white;
-  margin: 30px;
-  width: 15rem;
+  flex-basis: 270px;
+	flex-grow: 0;
+	flex-shrink: 0;
   display: flex;
+  margin-right: 20px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.37) 1.95px 1.95px 2.6px;
 }
 
 .smallcardinfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.smallcardinfo button {
+  margin: 0;
+}
+
+.smallcardinfo img {
+  width: 50%;
   height: auto;
-  width: 30vh;
+}
+
+.smallcardinfo h3 {
+  margin: 0;
+  color: var(--darkpurple);
+  text-align: center;
+}
+
+.rating {
+  color: var(--darkpurple);
 }
 
 h1 {
   color: var(--lightaqua)
 }
 
+
 .bodydashboard {
   flex-grow: 1;
-  width: 100%;
+  width: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.authorInfo {
+  color: var(--darkpurple);
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .currentbodydashboard {
@@ -365,4 +399,20 @@ h1 {
 
 .verticalflextext h3 {
   margin: 5px;
+}
+
+svg {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.starscontainer h3 {
+  color: gray
+}
+
+.statusInfo {
+  margin: 0;
+  font-size: small;
+  color: var(--lightaqua)
 }

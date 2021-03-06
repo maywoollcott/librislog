@@ -16,7 +16,7 @@ const BookCard = (props) => {
   const imFinishedHandler = async () => {
     const newLib = ([...value.library]);
     let index = newLib.findIndex(book => {
-      return book.title === props.title
+      return book.id === props.id
     })
     newLib[index].status = 'finished'
     value.setLibrary(newLib);
@@ -67,8 +67,8 @@ const BookCard = (props) => {
         <img src={props.imageURL} alt=""/>
         <h2>{props.author}</h2>
         <h2>Currently at page {props.currentPage} with {props.pages - props.currentPage} left to go!</h2>
-        {!displayPageForm &&
-          <button className="loginbtn" disabled={!props.active}onClick={updateProgressHandler}>Update Progress</button>
+        {!displayPageForm && props.active &&
+          <button className="loginbtn" onClick={updateProgressHandler}>Update Progress</button>
         }
         {displayPageForm &&
           <div className="verticalflextext">
@@ -81,8 +81,8 @@ const BookCard = (props) => {
             </form>
           </div>
         } 
-        {!displayPageForm &&        
-        <button className="loginbtn"onClick={imFinishedHandler} disabled={!props.active}>I'm finished!</button>
+        {!displayPageForm && props.active &&     
+        <button className="loginbtn"onClick={imFinishedHandler}> I'm finished!</button>
         }
       </div>
       <div className="spineinfo">

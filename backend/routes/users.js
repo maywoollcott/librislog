@@ -75,7 +75,6 @@ router.put('/updatelibrary', authMiddleware, async (req, res) => {
   try {
     const { username } = req.username
     const user = await User.findOne({ username: username })
-    console.log(user)
 
     user.books = req.body
     await user.save();

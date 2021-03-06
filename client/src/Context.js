@@ -7,10 +7,7 @@ export const Context = createContext();
 export const Provider = (props) => {
 
   const [currentUser, setCurrentUser] = useState({
-    token: null,
     isAuthenticated: false,
-    loading: true,
-    user: null
   });
 
   const [library, setLibrary] = useState([]);

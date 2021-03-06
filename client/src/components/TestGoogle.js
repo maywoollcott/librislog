@@ -3,6 +3,7 @@ import { Context } from '../Context'
 import React, { Fragment, useState, useContext } from 'react';
 import apiService from '../utils/apiService';
 import { nanoid } from 'nanoid';
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 
 const TestGoogle = () => {
 
@@ -26,6 +27,9 @@ const TestGoogle = () => {
 
   const [volumeFormData, setVolumeFormData] = useState({
     status: '',
+    dateStarted: '',
+    dateFinished: '',
+    rating: ''
   });
 
   const [displayQuestions, toggleDisplayQuestions] = useState('primaryform');
@@ -33,7 +37,7 @@ const TestGoogle = () => {
   const [options, setOptions] = useState([]);
 
   const { title, author } = formData;
-  const { status } = volumeFormData
+  const { status, dateStarted, dateFinished } = volumeFormData
 
   const handleDataChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -79,6 +83,9 @@ const TestGoogle = () => {
     e.preventDefault();
     const newBook = {...finalBook}
     newBook.status = volumeFormData.status;
+    newBook.dateStarted = volumeFormData.dateStarted;
+    newBook.dateFinished = volumeFormData.dateFinished;
+    newBook.rating = volumeFormData.rating
     setFinalBook(newBook);
     console.log(newBook)
 
@@ -93,12 +100,35 @@ const TestGoogle = () => {
     history.push('/library')
   }
 
+  const [stars, setStars] = useState([false, false, false, false, false]);
 
+  const changeRating = (index) => {
+    let newRating = index + 1
+    console.log(newRating);
+    let newStar = updateLowerStars(index);
+    console.log(newStar)
+    setStars(newStar);
+
+    setVolumeFormData({ ...volumeFormData, rating : newRating })
+  }
+
+  const updateLowerStars = (index) => {
+    let starsCopy = [...stars]
+    for (var i = index; i >= 0; i--) {
+      starsCopy[i] = true
+    }
+    for (var i = index + 1; i <= 4; i++) {
+      starsCopy[i] = false
+    }
+    return starsCopy;
+  }
 
   return (
     <div>
       <div className="addbookcard">
-        <h1>Add book here!</h1>
+        {displayQuestions === 'primaryform' &&
+          <h1>Add book here!</h1>
+        }
         {displayQuestions === 'primaryform' &&
           <form className="addbookform" onSubmit={onSubmit} >
             <div className="formBox">
@@ -145,6 +175,30 @@ const TestGoogle = () => {
                   <h3>FINISHED</h3>
                 </div>
               </div>
+              {volumeFormData.status === 'currentlyReading' &&
+                <form className="addbookform" onSubmit={onSubmit} >
+                  <div className="formBox">
+                    <h3>DATE STARTED: </h3>
+                    <input type="date" name="dateStarted" value={ dateStarted } onChange={handleVolumeDataChange} required/>
+                  </div>
+                </form>
+              }
+              {volumeFormData.status === 'finished' &&
+                <form className="addbookform" onSubmit={onSubmit} >
+                  <div className="formBox">
+                    <h3>DATE FINISHED: </h3>
+                    <input type="date" name="dateFinished" value={ dateFinished } onChange={handleVolumeDataChange} required/>
+                  </div>
+                </form>
+              }
+              {volumeFormData.status === 'finished' &&
+                <div className="starscontainer">
+                  <h3>RATING:</h3>
+                  {stars.map((star, index) => {
+                    return star ? <AiFillStar onClick={() => changeRating(index)}/> : <AiOutlineStar onClick={() => changeRating(index)}/>
+                  })}
+                </div>
+              }
               <button className="loginbtn" type="submit">Add Book</button>
             </form>
           </div>
