@@ -15,21 +15,24 @@ function App() {
 
   const value = useContext(Context);
 
-  const updateLibrary = async () => {
+  const updateLibraryAndSessions = async () => {
 
     if (value.isAuthenticated) {
       const accessToken = localStorage.getItem('accessToken');
   
-      const books = await apiService.getLibrary(accessToken)
-      value.setLibrary(books.data);
+      const info = await apiService.getUserInfo(accessToken)
+      value.setLibrary(info.data.books);
+      value.setSessions(info.data.sessions);
+
     } else {
       value.setLibrary([]);
+      value.setSessions([]);
     }
 
   }
 
   useEffect ( () => {
-      updateLibrary()
+      updateLibraryAndSessions()
       //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value.isAuthenticated]);
 

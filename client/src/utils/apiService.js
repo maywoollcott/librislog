@@ -22,7 +22,15 @@ apiService.login = (username, password) => {
   })
 };
 
-apiService.getLibrary= (token) => {
+apiService.getUserInfo= (token) => {
+  return axios.get(`${BASE_URL}/books`, {
+    headers: {
+      "Authorization" : `Bearer ${token}`
+    }
+  })
+};
+
+apiService.getSessions= (token) => {
   return axios.get(`${BASE_URL}/books`, {
     headers: {
       "Authorization" : `Bearer ${token}`
@@ -32,6 +40,14 @@ apiService.getLibrary= (token) => {
 
 apiService.updateLibrary= (library, token) => {
   return axios.put(`${BASE_URL}/updatelibrary`, library, {
+    headers: {
+      "Authorization" : `Bearer ${token}`
+    },
+  })
+};
+
+apiService.updateSessions= (sessions, token) => {
+  return axios.put(`${BASE_URL}/updatesessions`, sessions, {
     headers: {
       "Authorization" : `Bearer ${token}`
     },

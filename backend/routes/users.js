@@ -77,15 +77,34 @@ router.put('/updatelibrary', authMiddleware, async (req, res) => {
   }
 });
 
+router.put('/updatesessions', authMiddleware, async (req, res) => {
+
+  try {
+    const { username } = req.username
+    const user = await User.findOne({ username: username })
+
+    user.sessions = req.body
+    await user.save();
+    res.status(200).send(user)
+
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server error.');
+  }
+});
+
 // fetch user's library @ base/books
 router.get('/books', authMiddleware, async (req, res) => {
   try {
     const { username } = req.username
     const user = await User.findOne({ username: username })
 
-    const books = user.books;
+    const info = {
+      books: user.books,
+      sessions: user.sessions
+    }
 
-    res.status(200).json(books)
+    res.status(200).json(info)
 
   } catch(err) {
 

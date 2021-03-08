@@ -16,6 +16,7 @@ const Landing = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
+
   const value = useContext(Context);
   const history = useHistory();
 
