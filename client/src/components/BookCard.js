@@ -47,7 +47,7 @@ const BookCard = (props) => {
   }
 
   const [sessionData, setSessionData] = useState({
-    bookId: '',
+    bookID: '',
     startingPage: '',
     endingPage: '',
     pagesRead: '',
@@ -57,7 +57,7 @@ const BookCard = (props) => {
 
   const startSessionHandler = async () => {
     let newSession = {...sessionData};
-    newSession.bookId = props.id;
+    newSession.bookID = props.id;
     newSession.startingPage = props.currentPage;
     newSession.date = moment().format();
     setSessionData(newSession);
@@ -118,7 +118,13 @@ const BookCard = (props) => {
   }
 
 
+  const bookSessions = value.sessions.filter(session => session.bookID === props.id);
 
+  let total = bookSessions.reduce((acc, curr) => acc + curr.minutes, 0);
+
+ 
+
+  
 
   return (
     <div className={props.active ? "panel active" : "panel"} onClick={clickActiveHandler}>
@@ -126,8 +132,12 @@ const BookCard = (props) => {
         <h1>{props.title}</h1>
         <img src={props.imageURL} alt=""/>
         <h2>{props.author}</h2>
-        {pageDisplay === 'default' &&        
-          <h2>Currently at page {props.currentPage} with {props.pages - props.currentPage} left to go!</h2>
+        {pageDisplay === 'default' &&  
+          <> 
+            <h2>Currently at page {props.currentPage} with {props.pages - props.currentPage} left to go!</h2>
+            <h2>Reading sessions: {bookSessions.length}</h2>
+            <h2>Total minutes: {total}</h2>
+          </>
         }
         {pageDisplay === 'default' && props.active &&
           <button className="loginbtn" onClick={updateProgressHandler}>Log Progress</button>
@@ -145,7 +155,7 @@ const BookCard = (props) => {
         } 
         {pageDisplay === 'startSession' &&
           <div className="verticalflextext">
-              <div>Session started at: {sessionData.date}</div>
+              <div>Session started at: {moment(sessionData.date).format('LT')}</div>
             <div>Starting page: {sessionData.startingPage} </div>
             <form className="addbookform" onSubmit={updateBookSessionHandler} >
               <div className="formBox">

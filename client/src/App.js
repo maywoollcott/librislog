@@ -10,6 +10,7 @@ import { Context } from './Context'
 import apiService from './utils/apiService'
 import AddBookManually from './components/AddBookManually'
 import AddBookWithApi from './components/AddBookWithApi'
+import Stats from './components/Stats'
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
           <Switch>
             <Route exact path='/current' component={CurrentlyReading} />
             <Route exact path='/library' component={Library} />
+            <Route exact path='/stats' component={Stats} />
           </Switch>
         </div>
       </div>
