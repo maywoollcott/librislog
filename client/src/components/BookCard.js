@@ -90,12 +90,46 @@ const BookCard = (props) => {
 
   const updateBookSessionHandler = async (e) => {
     e.preventDefault();
+
     let newSession = {...sessionData};
     newSession.pagesRead = sessionData.endingPage - sessionData.startingPage;
     let startTime = moment(sessionData.date);
     let finishTime = moment();
     newSession.minutes = finishTime.diff(startTime, 'minutes')
-    console.log(newSession)
+
+    let lastSessionDate = null;
+    if (value.sessions.length > 0) {
+      lastSessionDate = value.sessions[0].date;
+    };
+    let lastSessionDateFormatted = moment(lastSessionDate).format('MMM Do YY');
+    let currentSessionDateFormatted = moment(finishTime).format('MMM Do YY')
+    let yesterday = moment().subtract(1, 'day').format('MMM Do YY')
+
+    const accessToken = localStorage.getItem('accessToken');
+
+    let newStreak = {
+      newStreak: value.streak
+    };
+
+    if (currentSessionDateFormatted === lastSessionDateFormatted) {
+      console.log('Same day, streak will stay the same.')
+    } else if (lastSessionDateFormatted === yesterday || value.sessions.length === 0) {
+      newStreak.newStreak ++;
+      console.log('string will increment')
+      console.log(newStreak)
+      value.setStreak(newStreak.newStreak)
+      const res = await apiService.updateStreak(newStreak, accessToken)
+      console.log(res)
+    } else {
+      newStreak.newStreak = 1;
+      console.log('string will be one')
+      console.log(newStreak)
+      value.setStreak(newStreak.newStreak);
+      const res = await apiService.updateStreak(newStreak, accessToken)
+      console.log(res)
+    }
+
+    console.log(newStreak)
 
     const updatedSessions = ([...value.sessions]);
     updatedSessions.unshift(newSession);
@@ -108,23 +142,15 @@ const BookCard = (props) => {
     updatedLib[index].currentPage = sessionData.endingPage;
     value.setLibrary(updatedLib);
 
-    const accessToken = localStorage.getItem('accessToken');
-    const res2 = await apiService.updateLibrary(updatedLib, accessToken)
-    const res = await apiService.updateSessions(updatedSessions, accessToken)
-    console.log(value.sessions)
-    console.log(res.data)
-    console.log(res2.data)
+    await apiService.updateLibrary(updatedLib, accessToken)
+    await apiService.updateSessions(updatedSessions, accessToken)
+
     setPageDisplay('default')
   }
-
 
   const bookSessions = value.sessions.filter(session => session.bookID === props.id);
 
   let total = bookSessions.reduce((acc, curr) => acc + curr.minutes, 0);
-
- 
-
-  
 
   return (
     <div className={props.active ? "panel active" : "panel"} onClick={clickActiveHandler}>

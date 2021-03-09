@@ -54,6 +54,18 @@ apiService.updateSessions= (sessions, token) => {
   })
 };
 
+apiService.updateStreak= (streak, token) => {
+  try {
+    return axios.put(`${BASE_URL}/updatestreak`, streak, {
+      headers: {
+        "Authorization" : `Bearer ${token}`
+      },
+    })
+  } catch (error) {
+    console.log(error.response.data)
+  }
+};
+
 apiService.logout = () => {
 
 };

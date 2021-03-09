@@ -93,6 +93,26 @@ router.put('/updatesessions', authMiddleware, async (req, res) => {
   }
 });
 
+router.put('/updatestreak', authMiddleware, async (req, res) => {
+
+  try {
+    const { username } = req.username
+    const user = await User.findOne({ username: username })
+
+    const { newStreak } = req.body
+
+    console.log(newStreak)
+
+    user.streak = newStreak
+    await user.save();
+    res.status(200).send(user)
+
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server error.');
+  }
+});
+
 // fetch user's library @ base/books
 router.get('/books', authMiddleware, async (req, res) => {
   try {
@@ -101,7 +121,8 @@ router.get('/books', authMiddleware, async (req, res) => {
 
     const info = {
       books: user.books,
-      sessions: user.sessions
+      sessions: user.sessions,
+      streak: user.streak
     }
 
     res.status(200).json(info)

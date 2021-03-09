@@ -412,3 +412,19 @@ svg {
   font-size: small;
   color: var(--lightaqua)
 }
+
+.statscard {
+  background-color: white;
+  padding: 50px 50px;
+  border-radius: 30px;
+  color: var(--darkpurple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.37) 1.95px 1.95px 2.6px;
+}
+
+.statscard h2 {
+  font-size: 20px;
+}

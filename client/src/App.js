@@ -24,6 +24,7 @@ function App() {
       const info = await apiService.getUserInfo(accessToken)
       value.setLibrary(info.data.books);
       value.setSessions(info.data.sessions);
+      value.setStreak(info.data.streak)
 
     } else {
       value.setLibrary([]);

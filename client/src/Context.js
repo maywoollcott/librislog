@@ -8,6 +8,8 @@ export const Provider = (props) => {
 
   const [sessions, setSessions] = useState([]);
 
+  const [streak, setStreak] = useState(0);
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
@@ -16,6 +18,8 @@ export const Provider = (props) => {
       setLibrary: setLibrary,
       sessions: sessions,
       setSessions: setSessions,
+      streak: streak,
+      setStreak: setStreak,
       isAuthenticated: isAuthenticated,
       setIsAuthenticated: setIsAuthenticated
     }}>
