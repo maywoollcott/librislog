@@ -10,6 +10,7 @@ const Stats = () => {
   const totalReadingTime = value.sessions.reduce((acc, curr) => acc + curr.minutes, 0);
   const totalPagesRead = value.sessions.reduce((acc, curr) => acc + curr.pagesRead, 0);
   const totalBooksFinished = value.library.filter(book => book.status === 'finished').length;
+  const averageSessionLength = Math.round(totalReadingTime / totalReadingSessions);
 
 
   return (
@@ -17,9 +18,22 @@ const Stats = () => {
       <div className="statscontainer">
         <div className="stats">
           <div className="circle">
+            <h2>{totalBooksFinished}</h2>
+          </div>
+          <h3>BOOKS FINISHED</h3>
+        </div>
+        <div className="stats">
+          <div className="circle">
             <h2>{totalReadingSessions}</h2>
           </div>
           <h3>READING SESSIONS</h3>
+        </div>
+        <div className="stats">
+          <div className="circle">
+            <h2>{averageSessionLength}</h2>
+          </div>
+          <h3>AVERAGE SESSION LENGTH</h3>
+          <p>(in minutes)</p>
         </div>
         <div className="stats">
           <div className="circle">
@@ -33,12 +47,6 @@ const Stats = () => {
           </div>
           <h3>PAGES READ</h3>
         </div>
-        {/* <div className="stats">
-          <div className="circle">
-            <h2>{totalBooksFinished}</h2>
-          </div>
-          <h3>BOOKS FINISHED</h3>
-        </div> */}
         <div className="stats">
           <div className="circle">
             <h2>{Math.round(totalPagesRead/totalReadingTime*60)}</h2>
@@ -61,7 +69,6 @@ const Stats = () => {
           <p>(in minutes)</p>
         </div>
       </div>
-      
     </div>
   )
 }

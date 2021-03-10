@@ -4,6 +4,8 @@ import { useContext, useState }from 'react'
 import { Context } from '../Context'
 import apiService from '../utils/apiService'
 import moment from 'moment'
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
+import { useHistory } from 'react-router-dom';
 
 const BookCard = (props) => {
 
@@ -129,7 +131,6 @@ const BookCard = (props) => {
       console.log(res)
     }
 
-    console.log(newStreak)
 
     const updatedSessions = ([...value.sessions]);
     updatedSessions.unshift(newSession);
@@ -145,6 +146,7 @@ const BookCard = (props) => {
     await apiService.updateLibrary(updatedLib, accessToken)
     await apiService.updateSessions(updatedSessions, accessToken)
 
+    setSessionPageDisplay('default')
     setPageDisplay('default')
   }
 
@@ -152,12 +154,118 @@ const BookCard = (props) => {
 
   let total = bookSessions.reduce((acc, curr) => acc + curr.minutes, 0);
 
+  const [sessionPageDisplay, setSessionPageDisplay] = useState('default');
+
+  const endSession = () => {
+    setSessionPageDisplay('endSession')
+  }
+
+  const showStars = () => {
+    setSessionPageDisplay('showStars')
+  }
+
+  const [volumeFormData, setVolumeFormData] = useState({
+    rating: ''
+  });
+
+  const history = useHistory();
+
+  const finishInSession = async () => {
+
+    let newSession = {...sessionData};
+    newSession.pagesRead = props.pages - sessionData.startingPage;
+    let startTime = moment(sessionData.date);
+    let finishTime = moment();
+    newSession.minutes = finishTime.diff(startTime, 'minutes')
+
+    let lastSessionDate = null;
+    if (value.sessions.length > 0) {
+      lastSessionDate = value.sessions[0].date;
+    };
+    let lastSessionDateFormatted = moment(lastSessionDate).format('MMM Do YY');
+    let currentSessionDateFormatted = moment(finishTime).format('MMM Do YY')
+    let yesterday = moment().subtract(1, 'day').format('MMM Do YY')
+
+    const accessToken = localStorage.getItem('accessToken');
+
+    let newStreak = {
+      newStreak: value.streak
+    };
+
+    if (currentSessionDateFormatted === lastSessionDateFormatted) {
+      console.log('Same day, streak will stay the same.')
+    } else if (lastSessionDateFormatted === yesterday || value.sessions.length === 0) {
+      newStreak.newStreak ++;
+      value.setStreak(newStreak.newStreak)
+      const res = await apiService.updateStreak(newStreak, accessToken)
+      console.log(res)
+    } else {
+      newStreak.newStreak = 1;
+      value.setStreak(newStreak.newStreak);
+      const res = await apiService.updateStreak(newStreak, accessToken)
+      console.log(res)
+    }
+
+    const updatedSessions = ([...value.sessions]);
+    updatedSessions.unshift(newSession);
+    value.setSessions(updatedSessions);
+
+    const newLib = ([...value.library]);
+    let index = newLib.findIndex(book => {
+      return book.id === props.id
+    })
+
+    newLib[index].status = 'finished'
+    newLib[index].currentPage = props.pages
+    newLib[index].dateFinished = moment()
+    newLib[index].rating = volumeFormData.rating
+    value.setLibrary(newLib);
+
+    await apiService.updateLibrary(newLib, accessToken)
+    await apiService.updateSessions(updatedSessions, accessToken)
+
+    setSessionPageDisplay('default')
+    setPageDisplay('default')
+
+    history.push({
+      pathname: '/bookstats',
+      bookData: {
+        id: props.id,
+        name: 'may'
+      }
+
+    })
+  }
+
+  const [stars, setStars] = useState([false, false, false, false, false]);
+
+  const changeRating = (index) => {
+    let newRating = index + 1
+    console.log(newRating);
+    let newStar = updateLowerStars(index);
+    console.log(newStar)
+    setStars(newStar);
+
+    setVolumeFormData({ ...volumeFormData, rating : newRating })
+  }
+
+  const updateLowerStars = (index) => {
+    let starsCopy = [...stars]
+    for (let i = index; i >= 0; i--) {
+      starsCopy[i] = true
+    }
+    for (let i = index + 1; i <= 4; i++) {
+      starsCopy[i] = false
+    }
+    return starsCopy;
+  }
+
   return (
     <div className={props.active ? "panel active" : "panel"} onClick={clickActiveHandler}>
       <div className="bookinfo">
         <h1>{props.title}</h1>
-        <img src={props.imageURL} alt=""/>
         <h2>{props.author}</h2>
+        <img src={props.imageURL} alt=""/>
         {pageDisplay === 'default' &&  
           <> 
             <h2>Currently at page {props.currentPage} with {props.pages - props.currentPage} left to go!</h2>
@@ -173,7 +281,7 @@ const BookCard = (props) => {
             <form className="addbookform" onSubmit={updateBookHandler} >
               <div className="formBox">
                 <h3>I'm currently at page: </h3>
-                <input type="text" name="currentPage" value={ currentPage } onChange={handleDataChange} required/>
+                <input type="text" name="currentPage"  onChange={handleDataChange} required/>
               </div>
               <button className="loginbtn" type="submit">Submit</button>
             </form>
@@ -183,25 +291,49 @@ const BookCard = (props) => {
           <div className="verticalflextext">
               <div>Session started at: {moment(sessionData.date).format('LT')}</div>
             <div>Starting page: {sessionData.startingPage} </div>
-            <form className="addbookform" onSubmit={updateBookSessionHandler} >
-              <div className="formBox">
-                <h3>I made it to page: </h3>
-                <input type="text" name="endingPage" value={ endingPage } onChange={handleSessionDataChange} required/>
-              </div>
-              <button className="loginbtn" type="submit">End Session</button>
-            </form>
+            {sessionPageDisplay === 'default' &&
+                <>                 
+                  <button className="loginbtn" onClick={endSession}>End session</button>
+                  <button className="loginbtn" onClick={showStars}>Finished the book!</button>
+                </>
+            }
+            {sessionPageDisplay === 'endSession' &&
+                <>                 
+                  <form className="addbookform" onSubmit={updateBookSessionHandler} >
+                    <div className="formBox">
+                      <h3>I made it to page: </h3>
+                      <input type="text" name="endingPage" onChange={handleSessionDataChange} required/>
+                      <button className="loginbtn" type="submit">Submit</button>
+                    </div>
+                  </form>
+                </>
+            }
+            {sessionPageDisplay === 'showStars' &&
+              <>               
+                <div className="starscontainer">
+                  <h3>RATING:</h3>
+                  {stars.map((star, index) => {
+                    return star ? <AiFillStar onClick={() => changeRating(index)}/> : <AiOutlineStar onClick={() => changeRating(index)} key={index}/>
+                  })}
+                </div>
+                <button className="loginbtn" onClick={finishInSession}>Submit</button>
+              </>
+            }
+            
           </div>
         } 
         {pageDisplay === 'default' && props.active &&     
-        <button className="loginbtn"onClick={startSessionHandler}> Start Timed Reading Session</button>
+        <button className="loginbtn"onClick={startSessionHandler}> Start Session</button>
         }
-        {pageDisplay === 'default' && props.active &&     
+        {/* {pageDisplay === 'default' && props.active &&     
         <button className="loginbtn"onClick={imFinishedHandler}> I'm finished!</button>
-        }
+        } */}
       </div>
-      <div className="spineinfo">
-        <h1>{props.title}</h1>
-      </div>
+      {!props.active &&      
+        <div className="spineinfo">
+          <h1>{props.title}</h1>
+        </div>
+      }
     </div>
   )
 }

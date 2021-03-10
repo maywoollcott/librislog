@@ -24,7 +24,7 @@ const Library = (props) => {
       <h1>To Read</h1>
         <div className="librarycontainer">
               {wantToRead.map((book, index) => {
-                return <ListCard key={index} title={book.title} author={book.author} id={book.id} yearPublished={book.yearPublished} imageURL={book.imageURL} />
+                return <ListCard key={index} title={book.title} author={book.author} id={book.id} yearPublished={book.yearPublished} imageURL={book.imageURL} dontShowButton='true' />
               })}
           </div>
       <h1>Currently Reading</h1>

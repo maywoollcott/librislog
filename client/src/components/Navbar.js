@@ -27,7 +27,6 @@ const Navbar = () => {
           <>
             <li><Link to="/current" className="textlink">Current</Link></li>
             <li><Link to="/library" className="textlink">Library</Link></li>
-            <li><Link to="/toread" className="textlink">Discover</Link></li>
             <li><Link to="/stats" className="textlink">Stats</Link></li>
             <li><Link to="/addbook" className="textlink">Add Book</Link></li>
             <button className="navbtn" onClick={logout}>Logout</button>

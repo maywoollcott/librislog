@@ -85,6 +85,9 @@ img {
   box-shadow: rgba(0, 0, 0, 0.158) 1.95px 1.95px 2.6px;
 }
 
+.bookinfo img {
+  padding: 20px 0;
+}
 .bookinfo {
   opacity: 0;
   height: 90%;
@@ -93,6 +96,10 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.panel.active .bookinfo h2 {
+  margin: 3px;
 }
 
 .panel.active .bookinfo {
@@ -112,14 +119,19 @@ img {
 
 .panel h1 {
   font-size: 25px;
+  margin: 0;
+  text-align: center;
+  margin-bottom: 5px;
 }
 
 .panel h2 {
   font-size: 15px;
+  margin: 0;
 }
 
 .panel.active {
   flex: 4;
+  cursor: default;
 }
 
 .container {
@@ -193,6 +205,10 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.verticalflextext .formBox input {
+  color: var(--darkpurple);
 }
 
 .formBox h3 {
@@ -433,20 +449,64 @@ svg {
 .circle {
   display: flex;
   background-color: var(--lightaqua);
-  height: 20vh;
+  height: 25vh;
   position: relative;
-  width: 20vh;
+  width: 25vh;
   border-radius: 50%;
   justify-content: center;
   align-items: center;
   margin: 40px;
 }
 
+.circleheading {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--lightaqua);
+  height: 40vh;
+  position: relative;
+  width: 40vh;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
+}
+
+.bookStats .circle {
+  height: 20vh;
+  width: 20vh;
+  margin: 20px;
+}
+
+.bookStats {
+  display: flex;
+  align-items: center;
+}
+
+.bookStats h1 {
+  color: var(--darkpurple);
+  margin: 10px;
+  text-align: center;
+}
+
+.bookStats h3 {
+  color: var(--darkpurple);
+  margin: 5px;
+}
+
+.circleheading h3 {
+  margin-bottom: 20px;
+}
+
+.bookStats P {
+  color: var(--darkpurple);
+  margin: 0;
+}
+
 .stats {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px;
+  margin: 20px;
 }
 
 .stats h3 {
@@ -461,9 +521,10 @@ svg {
 
 .statscontainer {
   width: 100%;
-  margin: 20px;
+  margin-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
+

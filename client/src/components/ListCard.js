@@ -2,9 +2,12 @@ import { useContext }from 'react'
 import { Context } from '../Context'
 import apiService from '../utils/apiService'
 import { AiFillStar } from 'react-icons/ai'
+import { useHistory } from 'react-router-dom';
 
 const ListCard = (props) => {
   const value = useContext(Context)
+  
+  const history = useHistory();
 
   let status = '';
 
@@ -25,6 +28,15 @@ const ListCard = (props) => {
     const accessToken = localStorage.getItem('accessToken');
     const res = await apiService.updateLibrary(newLib, accessToken)
     console.log(res.data)
+  }
+
+  const checkStatsHandler = () => {
+    history.push({
+      pathname: '/bookstats',
+      bookData: {
+        id: props.id
+      }
+    })
   }
 
   return (
@@ -48,6 +60,9 @@ const ListCard = (props) => {
         </div>
         }
         <button className="loginbtn" onClick={deleteHandler}>Remove</button>
+        {!props.dontShowButton &&
+          <button className="loginbtn" onClick={checkStatsHandler}>Check stats</button>
+        }
       </div>
     </div>
   )

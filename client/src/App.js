@@ -11,6 +11,7 @@ import apiService from './utils/apiService'
 import AddBookManually from './components/AddBookManually'
 import AddBookWithApi from './components/AddBookWithApi'
 import Stats from './components/Stats'
+import BookStats from './components/BookStats'
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
           <Route exact path='/addbookmanually' component={AddBookManually} />
           <Route exact path='/addbook' component={AddBookWithApi} />
           <Route exact path='/register' component={Registration} />
+          <Route exact path='/bookstats' component={BookStats} />
           <Switch>
             <Route exact path='/current' component={CurrentlyReading} />
             <Route exact path='/library' component={Library} />
