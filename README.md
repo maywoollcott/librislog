@@ -46,7 +46,7 @@ A list of options is returned based on your search. Select whichever option is t
 Select whether you've started the book (enter the date started), want to read it, or have already finished it (enter the date completed and your rating). Click "add book" and it will be added to your library.
 <br>
 <br>
-![Library](screenshots/current.png)
+![Library](https://github.com/maywoollcott/librislog/blob/main/screenshots/current.PNG)
 **Currently Reading**
 <br>
 View your currently-reading bookshelf here. Click on a spine to expand details about the selected book and see your reading progress (pages read and pages left to go, number of reading sessions, and total minutes read). Click "Log Progress" to update your place in the book, or "Start Session" to start a timed reading session, which will be analyzed and added to your stats.
