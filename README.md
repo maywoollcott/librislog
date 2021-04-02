@@ -8,7 +8,7 @@ Check out the demo here: https://www.youtube.com/watch?v=4pz1FlaogtA
 On the back end I used Node JS, Express, MongoDB and Mongoose, and JWT for authentication. On the front end I used React. I used the Google Books API to provide cover art and publishing information for any added books.
 <br>
 <br>
-![LandingPage](screenshots/Scren/landing.png)
+![LandingPage](screenshots/landing.png)
 **Landing**
 <br>
 <br>
