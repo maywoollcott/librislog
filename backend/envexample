@@ -1,0 +1,2 @@
+MONGO_URI=mongodb+srv://{username}:{password}@librislog.yvhnt.mongodb.net/LibrisLog?retryWrites=true&w=majority
+JWT_SECRET={enter secret key here}
