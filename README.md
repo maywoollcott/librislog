@@ -61,7 +61,7 @@ Once you start a reading session, your session start-time will be displayed. Cli
 ![OverallStats](https://github.com/maywoollcott/librislog/blob/main/screenshots/stats.PNG)
 **Overall Stats**
 <br>
-The stats page contains the following data, gleaned from all of your reading sessions:
+The stats page contains the following data, gleaned from all of your reading sessions:<br>
 *Books Finished<br>
 *Reading Sessions<br>
 *Average Session Length<br>
