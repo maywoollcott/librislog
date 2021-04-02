@@ -8,57 +8,57 @@ Check out the demo here: https://www.youtube.com/watch?v=4pz1FlaogtA
 On the back end I used Node JS, Express, MongoDB and Mongoose, and JWT for authentication. On the front end I used React. I used the Google Books API to provide cover art and publishing information for any added books.
 <br>
 <br>
-![LandingPage](./client/src/img/landing.png)
+![LandingPage](screenshots/Scren/landing.png)
 **Landing**
 <br>
 <br>
-![RegistrationPage](./client/src/img/registration.png)
+![RegistrationPage](screenshots/registration.png)
 **Registration**
 <br>
 <br>
-![Library](./client/src/img/library.png)
+![Library](screenshots/library.png)
 **Library**
 <br>
 On this page, view the books that you've finished, are currently reading, and would like to read.
 <br>
 <br>
-![FinishedBook](./client/src/img/details.png)
+![FinishedBook](screenshots/details.png)
 **Finished Book Stats**
 <br>
 Click "check stats" to view your reading stats for a finished book. Check out the number of reading sessions it took you to finish, time spent reading, average reading pace, average reading session length, and longest reading session.
 <br>
 <br>
-![Add Book](./client/src/img/search.png)
+![Add Book](screenshots/search.png)
 **Search for a Book**
 <br>
 Search by title and author name.
 <br>
 <br>
-![FinishedBook](./client/src/img/search1.png)
+![FinishedBook](screenshots/search1.png)
 **Search Results**
 <br>
 A list of options is returned based on your search. Select whichever option is the correct book or edition. If none of them are correct, you can search by ISBN or enter the info manually.
 <br>
 <br>
-![Library](./client/src/img/search2.png)
+![Library](screenshots/search2.png)
 **Add Book**
 <br>
 Select whether you've started the book (enter the date started), want to read it, or have already finished it (enter the date completed and your rating). Click "add book" and it will be added to your library.
 <br>
 <br>
-![Library](./client/src/img/current.png)
+![Library](screenshots/current.png)
 **Currently Reading**
 <br>
 View your currently-reading bookshelf here. Click on a spine to expand details about the selected book and see your reading progress (pages read and pages left to go, number of reading sessions, and total minutes read). Click "Log Progress" to update your place in the book, or "Start Session" to start a timed reading session, which will be analyzed and added to your stats.
 <br>
 <br>
-![ReadingSession](./client/src/img/session.png)
+![ReadingSession](screenshots/session.png)
 **Reading Session**
 <br>
 Once you start a reading session, your session start-time will be displayed. Click "End Session" and you will be prompted to enter the page you've reached, or "Finished Book" if you've completed the book. 
 <br>
 <br>
-![OverallStats](./client/src/img/stats.png)
+![OverallStats](screenshots/stats.png)
 **Overall Stats**
 <br>
 The stats page contains the following data, gleaned from all of your reading sessions:
@@ -72,7 +72,7 @@ The stats page contains the following data, gleaned from all of your reading ses
 *Longest Reading Session<br>
 <br>
 <br>
-![TechStack](./client/src/img/techstack.png)
+![TechStack](screenshots/techstack.png)
 **Tech Stack**
 <br>
 <br>
