@@ -8,7 +8,7 @@ Check out the demo here: https://www.youtube.com/watch?v=4pz1FlaogtA
 On the back end I used Node JS, Express, MongoDB and Mongoose, and JWT for authentication. On the front end I used React. I used the Google Books API to provide cover art and publishing information for any added books.
 <br>
 <br>
-![LandingPage](https://github.com/maywoollcott/librislog/blob/main/screenshots/landing.png)
+![LandingPage](https://github.com/maywoollcott/librislog/blob/main/screenshots/landing.PNG)
 **Landing**
 <br>
 <br>
@@ -16,13 +16,13 @@ On the back end I used Node JS, Express, MongoDB and Mongoose, and JWT for authe
 **Registration**
 <br>
 <br>
-![Library](https://github.com/maywoollcott/librislog/blob/main/screenshots/library.png)
+![Library](https://github.com/maywoollcott/librislog/blob/main/screenshots/library.PNG)
 **Library**
 <br>
 On this page, view the books that you've finished, are currently reading, and would like to read.
 <br>
 <br>
-![FinishedBook](https://github.com/maywoollcott/librislog/blob/main/screenshots/details.png)
+![FinishedBook](https://github.com/maywoollcott/librislog/blob/main/screenshots/details.PNG)
 **Finished Book Stats**
 <br>
 Click "check stats" to view your reading stats for a finished book. Check out the number of reading sessions it took you to finish, time spent reading, average reading pace, average reading session length, and longest reading session.
