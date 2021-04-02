@@ -12,7 +12,7 @@ On the back end I used Node JS, Express, MongoDB and Mongoose, and JWT for authe
 **Landing**
 <br>
 <br>
-![RegistrationPage](https://github.com/maywoollcott/librislog/blob/main/screenshots/registration.png)
+![RegistrationPage](https://github.com/maywoollcott/librislog/blob/main/screenshots/registration.PNG)
 **Registration**
 <br>
 <br>
@@ -28,19 +28,19 @@ On this page, view the books that you've finished, are currently reading, and wo
 Click "check stats" to view your reading stats for a finished book. Check out the number of reading sessions it took you to finish, time spent reading, average reading pace, average reading session length, and longest reading session.
 <br>
 <br>
-![Add Book](https://github.com/maywoollcott/librislog/blob/main/screenshots/search.png)
+![Add Book](https://github.com/maywoollcott/librislog/blob/main/screenshots/search.PNG)
 **Search for a Book**
 <br>
 Search by title and author name.
 <br>
 <br>
-![FinishedBook](https://github.com/maywoollcott/librislog/blob/main/screenshots/search1.png)
+![FinishedBook](https://github.com/maywoollcott/librislog/blob/main/screenshots/search1.PNG)
 **Search Results**
 <br>
 A list of options is returned based on your search. Select whichever option is the correct book or edition. If none of them are correct, you can search by ISBN or enter the info manually.
 <br>
 <br>
-![Library](https://github.com/maywoollcott/librislog/blob/main/screenshots/search2.png)
+![Library](https://github.com/maywoollcott/librislog/blob/main/screenshots/search2.PNG)
 **Add Book**
 <br>
 Select whether you've started the book (enter the date started), want to read it, or have already finished it (enter the date completed and your rating). Click "add book" and it will be added to your library.
@@ -52,13 +52,13 @@ Select whether you've started the book (enter the date started), want to read it
 View your currently-reading bookshelf here. Click on a spine to expand details about the selected book and see your reading progress (pages read and pages left to go, number of reading sessions, and total minutes read). Click "Log Progress" to update your place in the book, or "Start Session" to start a timed reading session, which will be analyzed and added to your stats.
 <br>
 <br>
-![ReadingSession](https://github.com/maywoollcott/librislog/blob/main/screenshots/session.png)
+![ReadingSession](https://github.com/maywoollcott/librislog/blob/main/screenshots/session.PNG)
 **Reading Session**
 <br>
 Once you start a reading session, your session start-time will be displayed. Click "End Session" and you will be prompted to enter the page you've reached, or "Finished Book" if you've completed the book. 
 <br>
 <br>
-![OverallStats](https://github.com/maywoollcott/librislog/blob/main/screenshots/stats.png)
+![OverallStats](https://github.com/maywoollcott/librislog/blob/main/screenshots/stats.PNG)
 **Overall Stats**
 <br>
 The stats page contains the following data, gleaned from all of your reading sessions:
@@ -72,7 +72,7 @@ The stats page contains the following data, gleaned from all of your reading ses
 *Longest Reading Session<br>
 <br>
 <br>
-![TechStack](https://github.com/maywoollcott/librislog/blob/main/screenshots/techstack.png)
+![TechStack](https://github.com/maywoollcott/librislog/blob/main/screenshots/techstack.PNG)
 **Tech Stack**
 <br>
 <br>
